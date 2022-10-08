@@ -56,9 +56,9 @@ db = SQLAlchemy(app)
 class BioData(db.Model):
     __tablename__ = "bio_data"
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), nullable=False)
-    rating = db.Column(db.Integer, nullable=False)
-    review = db.Column(db.String(250), nullable=False)
+    title = db.Column(db.String(250), nullable=False)   # name
+    rating = db.Column(db.Integer, nullable=False)     # Age
+    review = db.Column(db.String(250), nullable=False)  # type
     img_url = db.Column(db.String(1000), nullable=False)
     resume = db.Column(db.String(1000), nullable=False)
     video = db.Column(db.String(1000), nullable=False)
@@ -68,16 +68,16 @@ class BioData(db.Model):
 class User(db.Model):
     __tablename__ = "user1"
     id = db.Column(db.Integer, primary_key=True)
-    author_id = db.Column(db.String(250), nullable=False)
+    author_id = db.Column(db.Integer, nullable=False)
     Name = db.Column(db.String(250), nullable=False)
-    Contact = db.Column(db.String(250), nullable=False)
-    Nid = db.Column(db.String(250), nullable=False)
-    Visa = db.Column(db.String(250), nullable=False)
+    Contact = db.Column(db.Integer, nullable=False)
+    Nid = db.Column(db.Integer, nullable=False)
+    Visa = db.Column(db.Integer, nullable=False)
 
 
 # CREATE TABLE IN DB To save users login Data (Hashed & Salted)
 class Admins(UserMixin, db.Model):
-    id = db.Column(db.String(250), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(1000))
     email = db.Column(db.String(250), unique=True)
     password = db.Column(db.String(250))
@@ -109,10 +109,10 @@ class EditCv(FlaskForm):
 # Select Candidate Form (For Users)
 class Choice(FlaskForm):
     Name = StringField('ادخل الإسم', validators=[DataRequired()])
-    Contact = StringField('رقم الجوال', validators=[DataRequired()])
-    Nid = StringField('رقم الهوية/الإقامة', validators=[DataRequired()])
+    Contact = IntegerField('رقم الجوال', validators=[DataRequired()])
+    Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired()])
     Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
-    author_id = StringField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
+    author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
     submit = SubmitField('إختيار')
 
 
