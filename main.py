@@ -214,7 +214,7 @@ def edit():
         updated_cv.title = form.title.data
         updated_cv.rating = form.rating.data
         updated_cv.review = form.review.data
-        updated_cv.img_url = form.img_url.data
+        # updated_cv.img_url = form.img_url.data
         db.session.commit()
         flash("تم تعديل بيانات العاملة بنجاح✔")
         return redirect(url_for('Dh_list'))
@@ -254,10 +254,10 @@ def choice(cvs_id):
             flash("لقد قمت بإدخال رقم تعريف خاطئ , الرجاء التأكد من رقم التعريف والمحاولة مرة أخرى ")
             new_user = User(
                 Name='N/A',
-                Contact='N/A',
-                Nid='N/A',
-                Visa='N/A',
-                author_id='00'
+                Contact='0',
+                Nid='0',
+                Visa='0',
+                author_id='0'
             )
 
         db.session.add(new_user)
