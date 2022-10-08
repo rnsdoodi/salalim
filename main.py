@@ -10,10 +10,10 @@ from wtforms.validators import DataRequired, URL
 import csv
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import os
 # from flask_uploads import IMAGES, configure_uploads , UploadSet
 from werkzeug.utils import secure_filename
-import os
+
 import uuid as uuid
 
 #################################
@@ -27,7 +27,7 @@ all_cvs = []
 all_users = []
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'any secret key yes'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY","any secret key yes")
 ####################################################
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -47,7 +47,7 @@ def load_user(Admin_id):
 #################################################
 
 # CREATE DATABASE
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///candidates.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL","sqlite:///candidates.db")
 # Optional: But it will silence the deprecation warning in the console.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
