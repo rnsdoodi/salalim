@@ -1,0 +1,85 @@
+{% extends 'bootstrap/base.html'%}
+
+
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Philippines Candidates{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="container" style="text-align:right">
+  <h1 class="container" ><u>العمالة الفلبينية</u></h1>
+  <p class="container" >يمكنكم الإختيار بضغطة زر من العمالة أدناه</p>
+
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+
+
+
+
+     {% if cvs == []: %}
+    <div class="content">
+        <h3>...لاتوجد سير ذاتية متاحة الآن</h3>
+        <br><br><br><br>
+<!--         <img src="https://media.giphy.com/media/26hkhPJ5hmdD87HYA/giphy.gif"/>-->
+
+        {% endif %}
+        </div>
+
+
+
+    {% for cv in cvs %}
+  <div class="card" >
+      <div class="front" style="background-image: url('{{cv.img_url}}');">
+
+
+        <p class="large"></p>
+    </div>
+    <div class="back">
+      <div>
+    <div class="title">{{cv.title}}</div>
+
+        <div class="rating" style="color:black;">
+            <label>Age: {{cv.rating}} Years Old</label>
+<!--          <i class="fas fa-star star"></i>-->
+        </div>
+          <p class="review"> عاملة منزلية /{{cv.review}}</p>
+          <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>
+
+        <a href="{{url_for('choice',cvs_id=cv.id)}}" class="btn btn-success">اختيار</a>
+           <br><br>
+          <a href="{{cv.resume}}" class="btn btn-info" target="_blank">عرض السيرة الذاتية</a>
+<br><br>
+          <a href="{{cv.video}}" class="btn btn-warning" target="_blank">فيديو المقابلة الشخصية</a>
+
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+
+<div class="container text-center add">
+<a href="{{url_for('home')}}" class="btn btn-dark">الصفحة الرئيسية</a>
+</div>
+<br><br><br><br><br><br><br><br>
+
+{%include "footer.html"%}
+
+{% endblock %}

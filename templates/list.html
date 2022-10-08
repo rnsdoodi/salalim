@@ -1,0 +1,71 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Added Cvs{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+
+
+ {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p style="color:white;text-align:center; background-color:green;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+ <div class="heading">
+        <h2>قائمة العمالة المضافة</h2>
+        </div>
+
+ {% if cvs == []: %}
+    <div class="content">
+        <h3>...لا توجد سير ذاتية مضافة </h3>
+        </div>
+<br>
+        <div class="content">
+<iframe src="https://giphy.com/embed/tXL4FHPSnVJ0A" width="480" height="317" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <p><a href="https://giphy.com/gifs/kim-novak-tXL4FHPSnVJ0A"></a></p>
+        {% endif %}
+        </div>
+
+{% for cv in cvs %}
+<table class="table">
+
+    <thead>
+    <tr>
+
+        <th scope="col" >رقم العاملة</th>
+        <th scope="col">اسم العاملة</th>
+        <th scope="col">العمر</th>
+        <th scope="col">المهنة</th>
+        <th scope="col">الحالة</th>
+    </tr>
+
+
+    <tbody>
+    <tr>
+      <th scope="row" style="color:red ">{{cv.id}}</th>
+      <td>{{cv.title}}</td>
+      <td>{{cv.rating}} Years Old </td>
+      <td>{{cv.review}}</td>
+        <td> <a href="{{url_for('edit', id=cv.id)}}" class="btn btn-info"> تعديل Update </a>
+    <a href="{{url_for('delete', id=cv.id)}}" class="btn btn-danger"> حذف Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+    {% endfor %}
+
+
+<div class="content">
+<p class="heading"><a href="{{url_for('add')}}" class="btn btn-dark">إضافة عاملة جديدة</a></p>
+</div>
+<br>
+{%include "footer.html"%}
+{% endblock %}

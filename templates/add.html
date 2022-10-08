@@ -1,0 +1,86 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Add New Worker{% endblock %}
+
+{% block content %}
+
+<div class="content">
+
+<br><br>
+    <div style="color:black;margin-left:90%;">{{current_user.name}} ,  ✌️مرحباً </div>
+    <br><br><br><br>
+<a href="{{url_for('logout')}}" class="btn btn-primary" style="margin-left:90%;">تسجيل الخروج</a>
+
+
+    <h1 class="heading">لوحة التحكم</h1>
+
+
+
+</div>
+<div class="content">
+ {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+    <h1 class="heading">إضافة عاملة جديدة</h1>
+
+
+      {{ wtf.quick_form(form,novalidate=True, action=action, extra_classes="size-options",
+       button_map={'submit':'dark'},enctype="multipart/form-data")}}
+
+<!--    <form method="post" enctype="multipart/form-data">إضافة عاملة جديدة</form>-->
+<!--    <form method="post"  enctype="multipart/form-data">-->
+<!--        <input name="title"/>-->
+<!--        <input name="rating"/>-->
+<!--        <input name="review"/>-->
+<!--        <input name="profilePic" type="file" accept="image/*" capture="user"/>-->
+<!--        <button type="submit">upload</button>-->
+<!--    </form>-->
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="content">
+<p class="heading"><a href="{{url_for('Dh_list')}}" class="btn btn-info">Check All Added Cvs </a></p>
+</div>
+
+
+<div class="content">
+<p class="heading"><a href="{{url_for('selections')}}" class="btn btn-info">Check All Selections طلبات الاختيار</a></p>
+</div>
+
+
+
+<div class="content">
+<p class="heading"><a href="{{url_for('cvs')}}" class="btn btn-info">Check The List of the Cv's with Images قائمة السير الذاتية مع الصور</a></p>
+</div>
+
+
+{%include "footer.html"%}
+
+{% endblock %}
+
+
+
+

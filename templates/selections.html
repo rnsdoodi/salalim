@@ -1,0 +1,86 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Selected Cvs{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+
+ {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p style="color:white;text-align:center; background-color:green;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+ <div class="heading">
+        <h2>اختيارات و طلبات العملاء</h2>
+        </div>
+
+<br>
+ {% if users == []: %}
+    <div class="content">
+        <h3>...لا توجد خيارات للعملاء حتى الآن</h3>
+            </div>
+<br>
+                <div class="content">
+<iframe src="https://giphy.com/embed/QBd2kLB5qDmysEXre9" width="480" height="288" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <p><a href="https://giphy.com/gifs/time-mr-bean-look-at-the-QBd2kLB5qDmysEXre9"></a></p>
+
+
+        {% endif %}
+        </div>
+
+{% for user in users %}
+
+
+
+<table class="table">
+
+    <thead>
+    <tr>
+
+        <th scope="col"># رقم الطلب</th>
+        <th scope="col"> اسم العميل</th>
+        <th scope="col">  رقم الجوال</th>
+        <th scope="col"> رقم الهوية أو الإقامة</th>
+        <th scope="col">(الصادر)رقم التاشيرة </th>
+        <th scope="col">  العاملة المختارة</th>
+        <th scope="col">حالة الطلب</th>
+    </tr>
+
+
+    <tbody>
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.Name}}</td>
+      <td>{{user.Contact}} </td>
+      <td>{{user.Nid}}</td>
+        <td>{{user.Visa}}</td>
+        <td style="color:red">{{user.author_id}} </td>
+
+
+        <td> <a href="#" class="btn btn-info">Accept قبول</a>
+         <a href="{{url_for('reject', users_id=user.id)}}" class="btn btn-danger"> Reject رفض</a></td>
+    </tr>
+    </tbody>
+</table>
+
+    {% endfor %}
+
+
+
+
+
+<div class="content">
+<p class="heading"><a href="{{url_for('add')}}" class="btn btn-dark">العودة إلى لوحة التحكم</a></p>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{%include "footer.html"%}
+{% endblock %}
