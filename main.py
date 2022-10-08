@@ -68,7 +68,7 @@ class BioData(db.Model):
 class User(db.Model):
     __tablename__ = "user1"
     id = db.Column(db.Integer, primary_key=True)
-    author_id = db.Column(db.Integer, nullable=False)
+    author_id = db.Column(db.String(250), nullable=False)
     Name = db.Column(db.String(250), nullable=False)
     Contact = db.Column(db.String(250), nullable=False)
     Nid = db.Column(db.String(250), nullable=False)
@@ -112,7 +112,7 @@ class Choice(FlaskForm):
     Contact = StringField('رقم الجوال', validators=[DataRequired()])
     Nid = StringField('رقم الهوية/الإقامة', validators=[DataRequired()])
     Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
-    author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
+    author_id = StringField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
     submit = SubmitField('إختيار')
 
 
