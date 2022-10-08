@@ -89,7 +89,7 @@ db.create_all()
 # Add Cv Flask Form
 class AddCv(FlaskForm):
     title = StringField('worker name اسم العاملة', validators=[DataRequired()])
-    rating = StringField('worker age العمر', validators=[DataRequired()])
+    rating = IntegerField('worker age العمر', validators=[DataRequired()])
     review = StringField('worker position المهنة', validators=[DataRequired()])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
@@ -109,7 +109,7 @@ class EditCv(FlaskForm):
 # Select Candidate Form (For Users)
 class Choice(FlaskForm):
     Name = StringField('ادخل الإسم', validators=[DataRequired()])
-    Contact = StringField('رقم الجوال', validators=[DataRequired()])
+    Contact = IntegerField('رقم الجوال', validators=[DataRequired()])
     Nid = StringField('رقم الهوية/الإقامة', validators=[DataRequired()])
     Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
     author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
