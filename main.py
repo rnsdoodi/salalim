@@ -71,7 +71,7 @@ class User(db.Model):
     author_id = db.Column(db.Integer, nullable=False)
     Name = db.Column(db.String(250), nullable=False)
     Contact = db.Column(db.String(250), nullable=False)
-    Nid = db.Column(db.Numeric(250), nullable=False)
+    Nid = db.Column(db.String(250), nullable=False)
     Visa = db.Column(db.String(250), nullable=False)
 
 
