@@ -77,7 +77,7 @@ class User(db.Model):
 
 # CREATE TABLE IN DB To save users login Data (Hashed & Salted)
 class Admins(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(250), primary_key=True)
     name = db.Column(db.String(1000))
     email = db.Column(db.String(250), unique=True)
     password = db.Column(db.String(250))
