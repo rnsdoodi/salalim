@@ -254,10 +254,10 @@ def choice(cvs_id):
             flash("لقد قمت بإدخال رقم تعريف خاطئ , الرجاء التأكد من رقم التعريف والمحاولة مرة أخرى ")
             new_user = User(
                 Name='N/A',
-                Contact='0',
+                Contact='N/A',
                 Nid='N/A',
                 Visa='N/A',
-                author_id='0'
+                author_id='00'
             )
 
         db.session.add(new_user)
