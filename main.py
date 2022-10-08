@@ -257,7 +257,7 @@ def choice(cvs_id):
                 Contact='0',
                 Nid='N/A',
                 Visa='N/A',
-                author_id='000'
+                author_id='0'
             )
 
         db.session.add(new_user)
