@@ -5,10 +5,11 @@
 {% block styles %}
 {{super()}}
 <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+ <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-
 
  {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -67,5 +68,7 @@
 <p class="heading"><a href="{{url_for('add')}}" class="btn btn-dark">إضافة عاملة جديدة</a></p>
 </div>
 <br>
+
+
 {%include "footer.html"%}
 {% endblock %}

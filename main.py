@@ -1,10 +1,12 @@
 from fileinput import filename
 from socket import create_connection
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
 import smtplib
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 from wtforms import StringField, SubmitField, IntegerField, FileField
 from wtforms.validators import DataRequired, URL
 import csv
@@ -27,7 +29,7 @@ all_cvs = []
 all_users = []
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY","any secret key yes")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "any secret key yes")
 ####################################################
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -53,26 +55,47 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class BioData(db.Model):
-    __tablename__ = "bio_data"
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), nullable=False)   # name
-    rating = db.Column(db.Integer, nullable=False)     # Age
-    review = db.Column(db.String(250), nullable=False)  # type
-    img_url = db.Column(db.String(1000), nullable=False)
-    resume = db.Column(db.String(1000), nullable=False)
-    video = db.Column(db.String(1000), nullable=False)
-
-
 # CREATE USERS TABLE
+# PARENT
 class User(db.Model):
-    __tablename__ = "user1"
+    __tablename__ = "customer"
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, nullable=False)
     Name = db.Column(db.String(250), nullable=False)
     Contact = db.Column(db.Integer, nullable=False)
     Nid = db.Column(db.Integer, nullable=False)
     Visa = db.Column(db.Integer, nullable=False)
+    resume = db.relationship('BioData', backref='resumes')
+    resume_id = db.Column(db.Integer, db.ForeignKey('bio_data.id'))
+
+
+# Child
+class BioData(db.Model):
+    __tablename__ = "bio_data"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(250), unique=True, nullable=False)  # name
+    rating = db.Column(db.Integer, nullable=False)  # Age
+    review = db.Column(db.String(250), nullable=False)  # type
+    img_url = db.Column(db.String(1000), nullable=False)
+    resume = db.Column(db.String(1000), nullable=False)
+    video = db.Column(db.String(1000), nullable=False)
+    selector = relationship('User', backref='bio')
+
+
+#######################################################################
+# New Table :
+
+class Temp(db.Model):
+    __tablename__ = "temp"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(250), unique=True, nullable=False)  # name
+    rating = db.Column(db.Integer, nullable=False)  # Age
+    review = db.Column(db.String(250), nullable=False)  # type
+    img_url = db.Column(db.String(1000), nullable=False)
+    resume = db.Column(db.String(1000), nullable=False)
+    video = db.Column(db.String(1000), nullable=False)
+
+#######################################################################
 
 
 # CREATE TABLE IN DB To save users login Data (Hashed & Salted)
@@ -108,12 +131,12 @@ class EditCv(FlaskForm):
 
 # Select Candidate Form (For Users)
 class Choice(FlaskForm):
-    Name = StringField('ادخل الإسم', validators=[DataRequired()])
+    Name = StringField('ادخل الاسم', validators=[DataRequired()])
     Contact = IntegerField('رقم الجوال', validators=[DataRequired()])
     Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired()])
     Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
     author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
-    submit = SubmitField('إختيار')
+    submit = SubmitField('اختيار')
 
 
 @app.route("/")
@@ -128,7 +151,7 @@ def select():
 
 @app.route("/philippines")
 def philippines():
-    all_cvs = BioData.query.all()
+    all_cvs = Temp.query.all()
     return render_template("philippines.html", cvs=all_cvs)
 
 
@@ -164,13 +187,22 @@ def add():
     form = AddCv()
 
     if form.validate_on_submit():
+        new_resume = Temp(
+            title=form.title.data,
+            rating=form.rating.data,
+            review=form.review.data,
+            img_url=form.img_url.data,
+            resume=form.resume.data,
+            video=form.video.data
+        )
+
         new_cv = BioData(
             title=form.title.data,
             rating=form.rating.data,
             review=form.review.data,
             img_url=form.img_url.data,
             resume=form.resume.data,
-            video=form.video.data,
+            video=form.video.data
         )
 
         with open("cvs-data.csv", mode="a", encoding="utf8") as csv_file:
@@ -187,8 +219,10 @@ def add():
         #                        secure_filename(file.filename)))
 
         db.session.add(new_cv)
+        db.session.add(new_resume)
         db.session.commit()
         all_cvs.append(new_cv)
+        all_cvs.append(new_resume)
         flash("تم إضافة العاملة بنجاح ✔!!")
         return redirect(url_for('add'))
 
@@ -235,18 +269,20 @@ def delete():
 def choice(cvs_id):
     form = Choice()
     cv_id = request.args.get("id")
-    cv_to_select = BioData.query.get(cv_id)
-
+    cv_to_select = Temp.query.get(cv_id)
+    selector = cvs_id
     if form.validate_on_submit():
         new_user = User(
             Name=form.Name.data,
             Contact=form.Contact.data,
             Nid=form.Nid.data,
             Visa=form.Visa.data,
-            author_id=form.author_id.data
+            author_id=form.author_id.data,
+            resume_id=selector
         )
+
         if form.author_id.data == cvs_id:
-            cv_to_select = db.session.query(BioData).get(cvs_id)
+            cv_to_select = db.session.query(Temp).get(cvs_id)
             db.session.delete(cv_to_select)
             db.session.commit()
             flash(" ✔ !!! تم الاختيار بنجاح  ")
@@ -257,7 +293,9 @@ def choice(cvs_id):
                 Contact='0',
                 Nid='0',
                 Visa='0',
-                author_id='0'
+                author_id='0',
+                resume_id='0'
+
             )
 
         db.session.add(new_user)
@@ -287,8 +325,7 @@ def Dh_list():
 @app.route("/selections")
 def selections():
     new_user = User.query.all()
-
-    return render_template("selections.html", users=new_user)
+    return render_template("selections.html", users=new_user, cvs=all_cvs)
 
 
 @app.route("/reject/<int:users_id>", methods=["GET", "POST"])
@@ -296,7 +333,7 @@ def reject(users_id):
     user_to_delete = db.session.query(User).get(users_id)
     db.session.delete(user_to_delete)
     db.session.commit()
-    flash(" ✔ تم رفض الطلب  ")
+    flash(" ✔ تم قبول الطلب  ")
 
     return redirect(url_for('selections'))
 
@@ -380,6 +417,7 @@ def admin():
     print(current_user.name)
     all_cvs = cvs.query.all()
     return render_template("add.html", cvs=all_cvs, logged_in=True, name=current_user.name)
+
 
 ########################################################################################################################
 if __name__ == "__main__":

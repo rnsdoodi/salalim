@@ -21,6 +21,7 @@
           	{% for item in row %}
 				{% if item[0:4] == "http" %}
 				<td><a href="{{item}}">picture</a></td>
+
 				{% else %}
 				<td>{{ item }}</td>
 				{% endif %}

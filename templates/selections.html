@@ -35,21 +35,20 @@
         {% endif %}
         </div>
 
+
 {% for user in users %}
 
-
-
 <table class="table">
-
     <thead>
     <tr>
 
         <th scope="col"># رقم الطلب</th>
         <th scope="col"> اسم العميل</th>
         <th scope="col">  رقم الجوال</th>
-        <th scope="col"> رقم الهوية أو الإقامة</th>
+        <th scope="col"> رقم الهُوِيَّة أو الإقامة</th>
         <th scope="col">(الصادر)رقم التاشيرة </th>
-        <th scope="col">  العاملة المختارة</th>
+        <th scope="col">  رقم تعريف العاملة المختارة</th>
+        <th scope="col">  اسم العاملة المختارة</th>
         <th scope="col">حالة الطلب</th>
     </tr>
 
@@ -62,6 +61,7 @@
       <td>{{user.Nid}}</td>
         <td>{{user.Visa}}</td>
         <td style="color:red">{{user.author_id}} </td>
+        <td style="color:red">{{user.bio.title}} </td>
 
 
         <td> <a href="#" class="btn btn-info">Accept قبول</a>
@@ -71,6 +71,9 @@
 </table>
 
     {% endfor %}
+
+
+
 
 
 
