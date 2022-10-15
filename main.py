@@ -1,5 +1,4 @@
-from fileinput import filename
-from socket import create_connection
+
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
 import smtplib
 from flask_bootstrap import Bootstrap
@@ -13,17 +12,10 @@ import csv
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-# from flask_uploads import IMAGES, configure_uploads , UploadSet
-from werkzeug.utils import secure_filename
 
-import uuid as uuid
 
-#################################
-UPLOAD_FOLDER = 'static/uploads/'
-################################
 OWN_EMAIL = "rnsdoodi9@gmail.com"
-ALAA_EMAIL = "siddig1382@gmail.com"
-OWN_PASSWORD = "Yazan@91347"
+OWN_PASSWORD = "djttsgtzkcfglqms"
 
 all_cvs = []
 all_users = []
@@ -31,7 +23,7 @@ all_users = []
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "any secret key yes")
 ####################################################
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 Bootstrap(app)
 ###################################################
@@ -179,7 +171,7 @@ def send_email(name, email, phone, message):
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(OWN_EMAIL, OWN_PASSWORD)
-        connection.sendmail(OWN_EMAIL, ALAA_EMAIL, email_message.encode("UTF-8"))
+        connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message.encode("UTF-8"))
 
 
 @app.route("/add", methods=["GET", "POST"])
