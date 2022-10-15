@@ -15,7 +15,7 @@ import os
 
 
 OWN_EMAIL = "rnsdoodi9@gmail.com"
-OWN_PASSWORD = "djttsgtzkcfglgms"
+OWN_PASSWORD = "mhscrjgbtflymwbz"
 
 all_cvs = []
 all_users = []
