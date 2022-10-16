@@ -17,7 +17,7 @@
 
 <br><br>
     <div style="color:black;margin-left:90%;">{{current_user.name}} ,  ✌️مرحباً </div>
-    <br><br><br><br>
+    <br><br><br><br><br>
 <a href="{{url_for('logout')}}" class="btn btn-primary" style="margin-left:90%;">تسجيل الخروج</a>
 
 
@@ -30,9 +30,7 @@
  {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
-         <div class="alert alert-success" role="alert">
-  {{ message }}
-</div>
+         <div class="alert alert-success" role="alert">{{ message }}</div>
 <!--         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>-->
         {% endfor %}
       {% endif %}
@@ -53,14 +51,6 @@
 <!--        <input name="profilePic" type="file" accept="image/*" capture="user"/>-->
 <!--        <button type="submit">upload</button>-->
 <!--    </form>-->
-
-
-
-
-
-
-
-
 </div>
 
 
