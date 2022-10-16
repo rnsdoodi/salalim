@@ -11,24 +11,35 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
 
-{% block title %}Philippines Candidates{% endblock %}
+{% block title %}العـمالة الكـينية{% endblock %}
 
 {% block content %}
+<br>
+<div class="container" style="text-align:right">
+  <h1 class="container" ><u>العمالة الكينية</u></h1>
+  <p class="container" >يمكنكم الإختيار بضغطة زر من العمالة أدناه</p>
 
-<div class="container">
-  <h1 class="heading">Kenya Candidates</h1>
-  <p class="description">You Can Choose From the Below Candidates</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+<!--         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>-->
+         <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <br><br><br><br>
 
      {% if cvs == []: %}
     <div class="content">
-        <h3>No Available Cv For Now</h3>
+        <h3>... لا توجد سير ذاتية متاحة الآن</h3>
 <!--         <img src="https://media.giphy.com/media/26hkhPJ5hmdD87HYA/giphy.gif"/>-->
         {% endif %}
         </div>
 
 
 <div class="container text-center add">
-<a href="{{url_for('home')}}" class="btn btn-dark">Back To Home</a>
+<a href="{{url_for('home')}}" class="btn btn-dark">الصفحة الرئيسية</a>
 
 </div>
 

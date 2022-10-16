@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
 
-{% block title %}Philippines Candidates{% endblock %}
+{% block title %}العـمالة الفلبينية{% endblock %}
 
 {% block content %}
 <br>
@@ -24,7 +24,10 @@
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
-         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>
+<!--         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>-->
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+
+
         {% endfor %}
       {% endif %}
     {% endwith %}
