@@ -215,7 +215,7 @@ def add():
         db.session.commit()
         all_cvs.append(new_cv)
         all_cvs.append(new_resume)
-        flash("تم إضافة العاملة بنجاح ✔!!")
+        flash("✔!! تم إضافة العاملة بنجاح ")
         return redirect(url_for('add'))
 
     return render_template("add.html", form=form, cv=cvs)
@@ -253,7 +253,7 @@ def delete():
     cv_to_delete = BioData.query.get(cv_id)
     db.session.delete(cv_to_delete)
     db.session.commit()
-    flash("تم حذف العاملة بنجاح✔")
+    flash("✔ تم حذف العاملة بنجاح")
     return redirect(url_for('Dh_list'))
 
 
@@ -325,7 +325,7 @@ def reject(users_id):
     user_to_delete = db.session.query(User).get(users_id)
     db.session.delete(user_to_delete)
     db.session.commit()
-    flash(" ✔ تم حذف الطلب  ")
+    flash(" ✔ تم رفض الطلب  ")
 
     return redirect(url_for('selections'))
 
