@@ -242,7 +242,7 @@ def edit():
         updated_cv.review = form.review.data
         # updated_cv.img_url = form.img_url.data
         db.session.commit()
-        flash("تم تعديل بيانات العاملة بنجاح✔")
+        flash("✔ تم تعديل بيانات العاملة بنجاح")
         return redirect(url_for('Dh_list'))
     return render_template("edit.html", form=form, cv=updated_cv)
 

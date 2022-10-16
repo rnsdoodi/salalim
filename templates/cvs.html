@@ -1,6 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 
-{% block title %}Philippines Cvs{% endblock %}
+{% block title %}جميع السير الذاتية {% endblock %}
 
 {% block styles %}
 {{super()}}
@@ -16,24 +16,27 @@
 
       <h1>All Cvs</h1>
 	{% for row in cvs %}
-	  <table class="table table table-striped ">
+	  <table class="table table table-striped " style="text-align:center;">
           <tr>
           	{% for item in row %}
 				{% if item[0:4] == "http" %}
-				<td><a href="{{item}}">picture</a></td>
+				<td style="text-align:center;"><a href="{{item}}" style="text-align:center;">picture</a></td>
 
 				{% else %}
-				<td>{{ item }}</td>
+				<td style="text-align:center;">{{ item }}</td>
 				{% endif %}
 			{%endfor%}
 	  </tr>
 {%endfor%}
   	  </table>
-
+<br><br>
       <p><a href="{{ url_for('add') }}" class="btn btn-dark">العودة إلى لوحة التحكم</a></p>
 
     </div>
   </div>
 </div>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{%include "footer.html"%}
 {% endblock %}

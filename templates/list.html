@@ -14,15 +14,16 @@
  {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
-         <p style="color:white;text-align:center; background-color:green;">{{ message }}</p>
+            <div class="alert alert-success" style="text-align:center;" role="alert">{{ message }}</div>
         {% endfor %}
       {% endif %}
     {% endwith %}
 
-
- <div class="heading">
+<br><br>
+ <div class="heading1" style="text-align:center;">
         <h2>قائمة العمالة المضافة</h2>
         </div>
+<br><br>
 
  {% if cvs == []: %}
     <div class="content">
@@ -40,34 +41,33 @@
 
     <thead>
     <tr>
-
-        <th scope="col" >رقم العاملة</th>
-        <th scope="col">اسم العاملة</th>
-        <th scope="col">العمر</th>
-        <th scope="col">المهنة</th>
-        <th scope="col">الحالة</th>
+        <th scope="col" style="text-align:center;">الحالة</th>
+        <th scope="col" style="text-align:center;">المهنة</th>
+        <th scope="col" style="text-align:center;">العمر</th>
+         <th scope="col" style="text-align:center;">اسم العاملة</th>
+         <th scope="col" style="text-align:center;">رقم العاملة</th>
     </tr>
 
 
     <tbody>
     <tr>
-      <th scope="row" style="color:red ">{{cv.id}}</th>
-      <td>{{cv.title}}</td>
-      <td>{{cv.rating}} Years Old </td>
-      <td>{{cv.review}}</td>
-        <td> <a href="{{url_for('edit', id=cv.id)}}" class="btn btn-info"> تعديل Update </a>
-    <a href="{{url_for('delete', id=cv.id)}}" class="btn btn-danger"> حذف Delete</a></td>
+        <td style="text-align:center;"> <a href="{{url_for('edit', id=cv.id)}}" class="btn btn-info"> تعديل Update </a>
+        <a href="{{url_for('delete', id=cv.id)}}" class="btn btn-danger"> حذف Delete</a></td>
+        <td style="text-align:center;">{{cv.review}}</td>
+        <td style="text-align:center;">{{cv.rating}} Years Old </td>
+         <td style="text-align:center;">{{cv.title}}</td>
+        <th scope="row" style="color:red;text-align:center;">{{cv.id}}</th>
     </tr>
     </tbody>
 </table>
 
     {% endfor %}
-
+<br><br>
 
 <div class="content">
 <p class="heading"><a href="{{url_for('add')}}" class="btn btn-dark">إضافة عاملة جديدة</a></p>
 </div>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 {%include "footer.html"%}
