@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
 
-{% block title %}  تعديل بيانات السير الذاتية في قاعدة البيانات  Bio Data {% endblock %}
+{% block title %}تعديل بيانات السير الذاتية المضافة للموقع Temporary{% endblock %}
 
 {% block content %}
 
 <br>
 <div class="content" >
-  <h1 class="heading1" style="text-align:center;"> Bio Data تعديل بيانات السير الذاتية في قاعدة البيانات </h1>
+  <h1 class="heading1" style="text-align:center;">Temporary تعديل بيانات السير الذاتية المضافة للموقع   </h1>
     <p class="description" >{{cvs_id}} </p>
 
   {{ wtf.quick_form(form) }}

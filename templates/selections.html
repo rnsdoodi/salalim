@@ -1,6 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 
-{% block title %}Selected Cvs{% endblock %}
+{% block title %}طلبات الاختيار{% endblock %}
 
 {% block styles %}
 {{super()}}
@@ -18,7 +18,7 @@
     {% endwith %}
 <br>
  <div class="heading1" style="text-align:center;">
-        <h2><u>اختيارات و طلبات العملاء</u></h2>
+        <h2>اختيارات و طلبات العملاء</h2>
         </div>
 
 <br><br><br>
@@ -54,10 +54,10 @@
 
     <tbody>
     <tr>
-        <td style="text-align:center;"> <a href="#" class="btn btn-info">Accept قبول</a>
+        <td style="text-align:center;"> <a href="#" class="btn btn-success">Accept قبول</a>
          <a href="{{url_for('reject', users_id=user.id)}}" class="btn btn-danger"> Reject رفض</a></td>
-        <td style="color:red;text-align:center;">{{user.bio.title}} </td>
-        <td style="color:red;text-align:center;">{{user.author_id}} </td>
+        <td style="text-align:center;">{{user.bio.title}} </td>
+        <td style="text-align:center;">{{user.author_id}} </td>
         <td style="text-align:center;">{{user.Visa}}</td>
         <td style="text-align:center;">{{user.Nid}}</td>
         <td style="text-align:center;">{{user.Contact}} </td>

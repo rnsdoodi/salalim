@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
 import smtplib
 from flask_bootstrap import Bootstrap
@@ -13,12 +12,12 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
-
 OWN_EMAIL = "rnsdoodi9@gmail.com"
 OWN_PASSWORD = "mhscrjgbtflymwbz"
 
 all_cvs = []
 all_users = []
+all_temps = []
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "any secret key yes")
@@ -87,6 +86,7 @@ class Temp(db.Model):
     resume = db.Column(db.String(1000), nullable=False)
     video = db.Column(db.String(1000), nullable=False)
 
+
 #######################################################################
 
 
@@ -108,8 +108,8 @@ class AddCv(FlaskForm):
     review = StringField('worker position المهنة', validators=[DataRequired()])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
-    video = StringField(' الفيديو', validators=[DataRequired()])
-    submit = SubmitField('Add إضافة')
+    video = StringField('Video الفيديو ', validators=[DataRequired()])
+    submit = SubmitField('Submit / إضافة')
 
 
 # Edit Cv Flask Form
@@ -144,7 +144,7 @@ def select():
 @app.route("/philippines")
 def philippines():
     all_cvs = Temp.query.all()
-    return render_template("philippines.html", cvs=all_cvs)
+    return render_template("philippines.html", cvs=all_cvs, temps=all_temps)
 
 
 @app.route("/kenya")
@@ -214,7 +214,7 @@ def add():
         db.session.add(new_resume)
         db.session.commit()
         all_cvs.append(new_cv)
-        all_cvs.append(new_resume)
+        all_temps.append(new_resume)
         flash("✔!! تم إضافة العاملة بنجاح ")
         return redirect(url_for('add'))
 
@@ -247,6 +247,26 @@ def edit():
     return render_template("edit.html", form=form, cv=updated_cv)
 
 
+@app.route("/temp_edit", methods=["GET", "POST"])
+def temp_edit():
+    form = EditCv()
+    temp_id = request.args.get("id")
+    updated_temp = Temp.query.get(temp_id)
+    if form.validate_on_submit():
+        updated_temp.title = form.title.data
+        updated_temp.rating = form.rating.data
+        updated_temp.review = form.review.data
+        # updated_cv.img_url = form.img_url.data
+        db.session.commit()
+        flash("✔ تم تعديل بيانات العاملة بنجاح")
+        return redirect(url_for('temp_list'))
+    return render_template("temp_edit.html", form=form, temp=updated_temp)
+
+
+
+
+
+
 @app.route("/delete")
 def delete():
     cv_id = request.args.get("id")
@@ -255,6 +275,16 @@ def delete():
     db.session.commit()
     flash("✔ تم حذف العاملة بنجاح")
     return redirect(url_for('Dh_list'))
+
+
+@app.route("/temp_delete")
+def temp_delete():
+    cv_id = request.args.get("id")
+    cv_to_delete = Temp.query.get(cv_id)
+    db.session.delete(cv_to_delete)
+    db.session.commit()
+    flash("✔ تم حذف العاملة بنجاح")
+    return redirect(url_for('temp_list'))
 
 
 @app.route("/choice/<int:cvs_id>", methods=["GET", "POST"])
@@ -277,23 +307,13 @@ def choice(cvs_id):
             cv_to_select = db.session.query(Temp).get(cvs_id)
             db.session.delete(cv_to_select)
             db.session.commit()
-            flash(" ✔ !!! تم الاختيار بنجاح  ")
+
+            db.session.add(new_user)
+            db.session.commit()
+            all_users.append(new_user)
+            flash(f" 0{new_user.Contact} تم الاختيار بنجاح وسوف نقوم بالتواصل معكم على الرقم ")
         else:
             flash("لقد قمت بإدخال رقم تعريف خاطئ , الرجاء التأكد من رقم التعريف والمحاولة مرة أخرى ")
-            new_user = User(
-                Name='N/A',
-                Contact='0',
-                Nid='0',
-                Visa='0',
-                author_id='0',
-                resume_id='0'
-
-            )
-
-        db.session.add(new_user)
-        db.session.commit()
-        all_users.append(new_user)
-
         return redirect(url_for('philippines'))
     return render_template("choice.html", form=form, users=all_users, select=cv_to_select, cvs=all_cvs, cv=cvs_id)
 
@@ -314,6 +334,12 @@ def Dh_list():
     return render_template("list.html", cvs=added_cvs)
 
 
+@app.route("/temp_list")
+def temp_list():
+    added_temps = Temp.query.all()
+    return render_template("temp_list.html", temps=added_temps, temp=cvs)
+
+
 @app.route("/selections")
 def selections():
     new_user = User.query.all()
@@ -322,10 +348,11 @@ def selections():
 
 @app.route("/reject/<int:users_id>", methods=["GET", "POST"])
 def reject(users_id):
+
     user_to_delete = db.session.query(User).get(users_id)
     db.session.delete(user_to_delete)
     db.session.commit()
-    flash(" ✔ تم رفض الطلب  ")
+    flash(" ✔ تم حذف الطلب  ")
 
     return redirect(url_for('selections'))
 

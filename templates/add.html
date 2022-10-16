@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
 
-{% block title %}Add New Worker{% endblock %}
+{% block title %}لوحة التحكم الرئيسية{% endblock %}
 
 {% block content %}
 
 <div class="content">
 
 <br><br>
-    <div style="color:black;margin-left:90%;">{{current_user.name}} ,  ✌️مرحباً </div>
+    <div style="color:black;margin-left:90%;"><b>{{current_user.name}}</b> ,  ✌️مرحباً </div>
     <br><br><br><br><br>
 <a href="{{url_for('logout')}}" class="btn btn-primary" style="margin-left:90%;">تسجيل الخروج</a>
 
@@ -53,17 +53,20 @@
 <!--    </form>-->
 </div>
 
-
-<div class="content">
-<p class="heading"><a href="{{url_for('Dh_list')}}" class="btn btn-info">Check All Added Cvs </a></p>
-</div>
+<br><br>
 
 
 <div class="content">
 <p class="heading"><a href="{{url_for('selections')}}" class="btn btn-info">Check All Selections طلبات الاختيار</a></p>
 </div>
 
+<div class="content">
+<p class="heading" ><a href="{{url_for('Dh_list')}}" class="btn btn-danger">Bio Data العمالة المضافة لقاعدة البيانات  </a></p>
+</div>
 
+<div class="content">
+<p class="heading"><a href="{{url_for('temp_list')}}" class="btn btn-info"> Temporary العمالة المضافة للصفحة الرئيسية (الموقع) </a></p>
+</div>
 
 <div class="content">
 <p class="heading"><a href="{{url_for('cvs')}}" class="btn btn-info">Check The List of the Cv's with Images قائمة السير الذاتية مع الصور</a></p>

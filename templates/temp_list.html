@@ -1,6 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 
-{% block title %}Bio Data قائمة العمالة المضافة لقاعدة البيانات{% endblock %}
+{% block title %}Temporary قائمة العمالة المضافة للصفحة الرئيسية (المـوقع){% endblock %}
 
 {% block styles %}
 {{super()}}
@@ -21,11 +21,11 @@
 
 <br><br>
  <div class="heading1" style="text-align:center;">
-        <h2> Bio Data قائمة العمالة المضافة لقاعدة البيانات</h2>
+        <h2>Temporary قائمة العمالة المضافة للصفحة الرئيسية (المـوقع) </h2>
         </div>
 <br><br>
 
- {% if cvs == []: %}
+ {% if temps == []: %}
     <div class="content">
         <h3>...لا توجد سير ذاتية مضافة </h3>
         </div>
@@ -36,7 +36,7 @@
         {% endif %}
         </div>
 
-{% for cv in cvs %}
+{% for temp in temps %}
 <table class="table">
 
     <thead>
@@ -51,12 +51,12 @@
 
     <tbody>
     <tr>
-        <td style="text-align:center;"><a href="{{url_for('edit', id=cv.id)}}" class="btn btn-success"> تعديل Edit</a>
-        <a href="{{url_for('delete', id=cv.id)}}" class="btn btn-danger"> حذف Delete</a></td>
-        <td style="text-align:center;">{{cv.review}}</td>
-        <td style="text-align:center;">{{cv.rating}} Years Old </td>
-         <td style="text-align:center;">{{cv.title}}</td>
-        <th scope="row" style="text-align:center;">{{cv.id}}</th>
+        <td style="text-align:center;"> <a href="{{url_for('temp_edit', id=temp.id)}}" class="btn btn-success"> تعديل Edit</a>
+        <a href="{{url_for('temp_delete', id=temp.id)}}" class="btn btn-danger"> حذف Delete</a></td>
+        <td style="text-align:center;">{{temp.review}}</td>
+        <td style="text-align:center;">{{temp.rating}} Years Old </td>
+         <td style="text-align:center;">{{temp.title}}</td>
+        <th scope="row" style="text-align:center;">{{temp.id}}</th>
     </tr>
     </tbody>
 </table>
