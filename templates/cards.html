@@ -1,32 +1,128 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" dir="ltr">-->
+<!--<head>-->
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+<!--  <link rel="stylesheet" href="/static/css/styles1.css">-->
+<!--  <meta charset="utf-8">-->
+<!--  <title>cards</title>-->
+<!--</head>-->
+<!--<body style="">-->
+<!--  <div class="row">-->
+<!--    <div class="col-lg-6">-->
+<!--      <a href="{{url_for('kenya')}}">-->
+<!--        <img class="african" src="https://media.istockphoto.com/photos/maid-making-bed-picture-id1082345648?b=1&k=20&m=1082345648&s=170667a&w=0&h=nFnW4VNhy4PoKGtRS3KhLUXhcAj2J3NebRL0vy62kbw=" alt="...">-->
+<!--      </a>-->
+<!--      <p class="afri">العمالة الكينية </p>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <a href="{{url_for('philippines')}}">-->
+<!--        <img class="filipina" src="https://media.istockphoto.com/photos/asian-woman-screaming-and-stress-from-doing-housework-chores-picture-id689948014?k=20&m=689948014&s=612x612&w=0&h=dsgHZFhHGpzhHIz05ebzuQXc_e62RYeaJmcn3O5B_1I=" alt="...">-->
+<!--      </a>-->
+<!--      <p class="afri">العمالة الفلبينية</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/static/css/styles1.css">
-  <meta charset="utf-8">
+  <title>Lodge</title>
 
-  <title>cards</title>
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/static/css/styles3.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
 </head>
-<body style="">
-  <div class="row">
-    <div class="col-lg-6">
-      <a href="{{url_for('kenya')}}">
-        <img class="african" src="https://media.istockphoto.com/photos/maid-making-bed-picture-id1082345648?b=1&k=20&m=1082345648&s=170667a&w=0&h=nFnW4VNhy4PoKGtRS3KhLUXhcAj2J3NebRL0vy62kbw=" alt="...">
-      </a>
-      <p class="afri">العمالة الكينية </p>
 
-    </div>
-    <div class="col">
-      <a href="{{url_for('philippines')}}">
-        <img class="filipina" src="https://media.istockphoto.com/photos/asian-woman-screaming-and-stress-from-doing-housework-chores-picture-id689948014?k=20&m=689948014&s=612x612&w=0&h=dsgHZFhHGpzhHIz05ebzuQXc_e62RYeaJmcn3O5B_1I=" alt="...">
-      </a>
-      <p class="afri">العمالة الفلبينية</p>
+<body>
 
+  <div class="hero_area">
+
+  <!-- price section -->
+  <section class="price_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2 style="text-align:center;">
+          مـرحباً بكم
+        </h2>
+      </div>
+      <div class="price_container">
+        <div class="box">
+          <div class="name">
+            <h2>
+              الـعمـالة الكـينـية
+            </h2>
+          </div>
+          <div class="img-box">
+            <img src="https://media.istockphoto.com/photos/maid-making-bed-picture-id1082345648?b=1&k=20&m=1082345648&s=170667a&w=0&h=nFnW4VNhy4PoKGtRS3KhLUXhcAj2J3NebRL0vy62kbw=" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+<!--              <span>1000.00</span>-->
+            </h5>
+            <a href="{{url_for('kenya')}}" style="border-radius:5%;">
+              الـدخـول
+            </a>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="name">
+            <h2>
+              الـعمالة الفلـبينية
+            </h2>
+          </div>
+          <div class="img-box">
+            <img src="https://media.istockphoto.com/photos/asian-woman-screaming-and-stress-from-doing-housework-chores-picture-id689948014?k=20&m=689948014&s=612x612&w=0&h=dsgHZFhHGpzhHIz05ebzuQXc_e62RYeaJmcn3O5B_1I=" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+<!--              <span>1000.00</span>-->
+            </h5>
+            <a href="{{url_for('philippines')}}" style="border-radius:5%;">
+              الـدخـول
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="" class="price_btn" style="border-radius:5%;">
+          الصفحة الرئيسية
+        </a>
+      </div>
     </div>
-  </div>
+
+  </section>
+
+
+  <!-- end price section -->
+
+<!--  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>-->
+<!--  <script type="text/javascript" src="/static/js/bootstrap.js"></script>-->
+<!--  <script type="text/javascript" src="js/custom.js"></script>-->
 
 </body>
+ {%include "footer.html"%}
+
 </html>
