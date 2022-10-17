@@ -126,7 +126,7 @@ class Choice(FlaskForm):
     Name = StringField('ادخل الاسم', validators=[DataRequired()])
     Contact = IntegerField('رقم الجوال', validators=[DataRequired()])
     Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired()])
-    Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
+    Visa = IntegerField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
     author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
     submit = SubmitField('اختيار')
 
