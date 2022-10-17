@@ -53,9 +53,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, nullable=False)
     Name = db.Column(db.String(250), nullable=False)
-    Contact = db.Column(db.Integer, nullable=False)
-    Nid = db.Column(db.Integer, nullable=False)
-    Visa = db.Column(db.Integer, nullable=False)
+    Contact = db.Column(db.String(250), nullable=False)
+    Nid = db.Column(db.String(250), nullable=False)
+    Visa = db.Column(db.String(250), nullable=False)
     resume = db.relationship('BioData', backref='resumes')
     resume_id = db.Column(db.Integer, db.ForeignKey('bio_data.id'))
 
