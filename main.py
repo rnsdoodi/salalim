@@ -314,7 +314,6 @@ def choice(cvs_id):
         else:
             flash("لقد قمت بإدخال رقم تعريف خاطئ , الرجاء التأكد من رقم التعريف والمحاولة مرة أخرى ")
 
-            flash("العاملة محجوزة مسبقاً, فضلاً قم بتحديث الصفحة والاختيار من جديد ")
         return redirect(url_for('philippines'))
     return render_template("choice.html", form=form, users=all_users, select=cv_to_select, cvs=all_cvs, cv=cvs_id)
 
