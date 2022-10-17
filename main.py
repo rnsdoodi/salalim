@@ -125,9 +125,9 @@ class EditCv(FlaskForm):
 # Select Candidate Form (For Users)
 class Choice(FlaskForm):
     Name = StringField('ادخل الاسم', validators=[DataRequired()])
-    Contact = IntegerField('رقم الجوال', validators=[DataRequired(), length(max=10)])
-    Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired(), length(max=10)])
-    Visa = IntegerField('رقم التأشيرة(الصادر)', validators=[DataRequired(), length(max=10)])
+    Contact = StringField('رقم الجوال', validators=[DataRequired(), length(max=10)])
+    Nid = StringField('رقم الهوية/الإقامة', validators=[DataRequired(), length(max=10)])
+    Visa = StringField('رقم التأشيرة(الصادر)', validators=[DataRequired(), length(max=10)])
     author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
     submit = SubmitField('اختيار')
 
