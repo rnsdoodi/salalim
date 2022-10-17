@@ -309,7 +309,7 @@ def choice(cvs_id):
             db.session.commit()
             all_users.append(new_user)
             flash(f" 0{new_user.Contact} تم الاختيار بنجاح وسوف نقوم بالتواصل معكم على الرقم ")
-        elif cv_to_select is None:
+        elif cvs_id is None:
             flash("العاملة محجوزة مسبقاً, فضلاً قم بتحديث الصفحة واختيار عاملة أخرى ")
         else:
             flash("لقد قمت بإدخال رقم تعريف خاطئ , الرجاء التأكد من رقم التعريف والمحاولة مرة أخرى ")
