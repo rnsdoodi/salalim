@@ -309,8 +309,10 @@ def choice(cvs_id):
             db.session.commit()
             all_users.append(new_user)
             flash(f" 0{new_user.Contact} تم الاختيار بنجاح وسوف نقوم بالتواصل معكم على الرقم ")
+        elif form.author_id.data is None:
+            flash("العاملة غير متاحة ")
         else:
-            flash("رقم تعريف خاطئ او ان العاملة غير متاحة")
+            flash("رقم تعريف خاطئ")
 
         return redirect(url_for('philippines'))
     return render_template("choice.html", form=form, users=all_users, select=cv_to_select, cvs=all_cvs, cv=cvs_id)
