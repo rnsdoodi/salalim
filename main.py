@@ -5,8 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
-from wtforms import StringField, SubmitField, IntegerField, FileField
-from wtforms.validators import DataRequired, URL
+from wtforms import StringField, SubmitField, IntegerField, SelectField
+from wtforms.validators import DataRequired, URL, length
 import csv
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -105,7 +105,8 @@ db.create_all()
 class AddCv(FlaskForm):
     title = StringField('worker name اسم العاملة', validators=[DataRequired()])
     rating = IntegerField('worker age العمر', validators=[DataRequired()])
-    review = StringField('worker position المهنة', validators=[DataRequired()])
+    review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة"
+        , "سائق خاص", "عامل منزلي"])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
     video = StringField('Video الفيديو ', validators=[DataRequired()])
@@ -124,9 +125,9 @@ class EditCv(FlaskForm):
 # Select Candidate Form (For Users)
 class Choice(FlaskForm):
     Name = StringField('ادخل الاسم', validators=[DataRequired()])
-    Contact = IntegerField('رقم الجوال', validators=[DataRequired()])
-    Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired()])
-    Visa = IntegerField('رقم التأشيرة(الصادر)', validators=[DataRequired()])
+    Contact = IntegerField('رقم الجوال', validators=[DataRequired(), length(max=10)])
+    Nid = IntegerField('رقم الهوية/الإقامة', validators=[DataRequired(), length(max=10)])
+    Visa = IntegerField('رقم التأشيرة(الصادر)', validators=[DataRequired(), length(max=10)])
     author_id = IntegerField('Worker ID الرجاء إدخال رقم تعريف العاملة المطلوبة ', validators=[DataRequired()])
     submit = SubmitField('اختيار')
 
@@ -263,10 +264,6 @@ def temp_edit():
     return render_template("temp_edit.html", form=form, temp=updated_temp)
 
 
-
-
-
-
 @app.route("/delete")
 def delete():
     cv_id = request.args.get("id")
@@ -348,7 +345,6 @@ def selections():
 
 @app.route("/reject/<int:users_id>", methods=["GET", "POST"])
 def reject(users_id):
-
     user_to_delete = db.session.query(User).get(users_id)
     db.session.delete(user_to_delete)
     db.session.commit()
