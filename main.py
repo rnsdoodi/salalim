@@ -310,7 +310,7 @@ def choice(cvs_id):
             all_users.append(new_user)
             flash(f" 0{new_user.Contact} تم الاختيار بنجاح وسوف نقوم بالتواصل معكم على الرقم ")
         else:
-            flash("رقم تعريف خاطئ")
+            flash("رقم تعريف خاطئ او ان العاملة غير متاحة حاليا, الرجاء التأكد والمحاولة مرة أخرى")
 
         return redirect(url_for('philippines'))
     return render_template("choice.html", form=form, users=all_users, select=cv_to_select, cvs=all_cvs, cv=cvs_id)
