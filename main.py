@@ -132,6 +132,16 @@ class Choice(FlaskForm):
     submit = SubmitField('اختيار')
 
 
+# class Forgot(FlaskForm):
+#     email = StringField('البريد الإلكتروني', validators=[DataRequired()])
+#     submit = SubmitField('تغيير كلمة المرور')
+#
+#
+# class Reset(FlaskForm):
+#     new_password = StringField('كلمة المرور الجديدة')
+#     submit = SubmitField('تغيير كلمة المرور')
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -227,7 +237,7 @@ def add():
 # @app.route("/downloads/tos/")
 # def tos():
 #     workingdir = os.path.abspath(os.getcwd())
-#     filepath = workingdir + '/static/uploads/'
+#     filepath = workingdir + '/static/files/'
 #     return send_from_directory(filepath, 'tos.pdf')
 
 
@@ -359,6 +369,51 @@ def policy():
     return render_template("policy.html")
 
 
+@app.route("/questions")
+def questions():
+    return render_template("questions.html")
+
+
+@app.route("/insurance")
+def insurance():
+    return send_from_directory('static', filename="files/insurance.pdf")
+
+
+@app.route("/visa")
+def visa():
+    return send_from_directory('static', filename="files/visa.pdf")
+
+
+@app.route("/salary")
+def salary():
+    return send_from_directory('static', filename="files/salary.pdf")
+
+
+@app.route("/electronic")
+def electronic():
+    return send_from_directory('static', filename="files/electronic.pdf")
+
+
+@app.route("/replace")
+def replace():
+    return send_from_directory('static', filename="files/replace.pdf")
+
+
+@app.route("/evisa")
+def evisa():
+    return send_from_directory('static', filename="files/evisa.jpg")
+
+
+@app.route("/musaned")
+def musaned():
+    return send_from_directory('static', filename="files/musaned.pdf")
+
+
+@app.route("/cancel")
+def cancel():
+    return send_from_directory('static', filename="files/cancel.jpg")
+
+
 ########################################################################################################################
 # Authentication Part for (Admins) :-
 
@@ -412,7 +467,7 @@ def login():
             flash("That email does not exist, please try again.")
             return redirect(url_for('login'))
         elif not check_password_hash(admin.password, password):
-            flash('Password incorrect, please try again.')
+            flash('Password incorrect, please try again.', 'danger')
             return redirect(url_for('login'))
         else:
             login_user(admin)
