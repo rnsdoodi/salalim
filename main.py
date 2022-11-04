@@ -376,7 +376,7 @@ def questions():
 
 @app.route("/insurance")
 def insurance():
-    return send_from_directory('static', filename="files/insurance.pdf")
+    return send_from_directory('static', filename="files/Insurance.pdf")
 
 
 @app.route("/visa")
