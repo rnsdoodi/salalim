@@ -1,7 +1,4 @@
 {% extends 'bootstrap/base.html'%}
-
-
-
 {% block styles %}
   {{ super() }}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
@@ -51,6 +48,8 @@
 
 
     {% for cv in cvs %}
+
+
   <div class="card" >
       <div class="front" style="background-image: url('{{cv.img_url}}');">
 
@@ -62,9 +61,9 @@
     <div class="title">{{cv.title}}</div>
 
         <div class="rating" style="color:black;">
-            <label>Age: {{cv.rating}} Years Old</label>
-<!--          <i class="fas fa-star star"></i>-->
+            <label> {{cv.rating}} : العمر</label>
         </div>
+             <p class="review"> {{cv.nationality}}</p>
           <p class="review"> {{cv.review}}</p>
           <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>
 
@@ -77,6 +76,7 @@
       </div>
     </div>
   </div>
+
     {% endfor %}
 </div>
 

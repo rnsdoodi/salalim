@@ -44,6 +44,7 @@
     <thead>
     <tr>
         <th scope="col" style="text-align:center;">الحالة</th>
+        <th scope="col" style="text-align:center;">الجنسية</th>
         <th scope="col" style="text-align:center;">المهنة</th>
         <th scope="col" style="text-align:center;">العمر</th>
          <th scope="col" style="text-align:center;">اسم العاملة</th>
@@ -55,6 +56,7 @@
     <tr>
         <td style="text-align:center;"> <a href="{{url_for('temp_edit', id=temp.id)}}" class="btn btn-success"> تعديل Edit</a>
         <a href="{{url_for('temp_delete', id=temp.id)}}" class="btn btn-danger"> حذف Delete</a></td>
+        <td style="text-align:center;">{{temp.nationality}}</td>
         <td style="text-align:center;">{{temp.review}}</td>
         <td style="text-align:center;">{{temp.rating}} Years Old </td>
          <td style="text-align:center;">{{temp.title}}</td>

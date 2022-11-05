@@ -67,6 +67,7 @@ class BioData(db.Model):
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
     review = db.Column(db.String(250), nullable=False)  # type
+    nationality = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(1000), nullable=False)
     resume = db.Column(db.String(1000), nullable=False)
     video = db.Column(db.String(1000), nullable=False)
@@ -82,6 +83,7 @@ class Temp(db.Model):
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
     review = db.Column(db.String(250), nullable=False)  # type
+    nationality = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(1000), nullable=False)
     resume = db.Column(db.String(1000), nullable=False)
     video = db.Column(db.String(1000), nullable=False)
@@ -107,6 +109,7 @@ class AddCv(FlaskForm):
     rating = IntegerField('worker age العمر', validators=[DataRequired()])
     review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة"
         , "سائق خاص", "عامل منزلي"])
+    nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Kenya "])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
     video = StringField('Video الفيديو ', validators=[DataRequired()])
@@ -160,7 +163,8 @@ def philippines():
 
 @app.route("/kenya")
 def kenya():
-    return render_template("kenya.html", cvs=all_cvs)
+    all_cvs = Temp.query.all()
+    return render_template("kenya.html", cvs=all_cvs, temps=all_temps)
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -194,6 +198,7 @@ def add():
             title=form.title.data,
             rating=form.rating.data,
             review=form.review.data,
+            nationality=form.nationality.data,
             img_url=form.img_url.data,
             resume=form.resume.data,
             video=form.video.data
@@ -203,6 +208,7 @@ def add():
             title=form.title.data,
             rating=form.rating.data,
             review=form.review.data,
+            nationality=form.nationality.data,
             img_url=form.img_url.data,
             resume=form.resume.data,
             video=form.video.data
@@ -212,6 +218,7 @@ def add():
             csv_file.write(f"\n{form.title.data},"
                            f"{form.rating.data},"
                            f"{form.review.data},"
+                            f"{form.nationality.data},"
                            f"{form.img_url.data},"
                            f"{form.resume.data},"
                            f"{form.video.data}"

@@ -44,6 +44,7 @@
     <thead>
     <tr>
         <th scope="col" style="text-align:center;">حالة الطلب</th>
+        <th scope="col" style="text-align:center;">  الجنسية</th>
         <th scope="col" style="text-align:center;">  اسم العاملة المختارة</th>
         <th scope="col" style="text-align:center;">  رقم تعريف العاملة المختارة</th>
         <th scope="col" style="text-align:center;">(الصادر)رقم التاشيرة </th>
@@ -58,6 +59,7 @@
     <tr>
         <td style="text-align:center;"> <a href="#" class="btn btn-success">Accept قبول</a>
          <a href="{{url_for('reject', users_id=user.id)}}" class="btn btn-danger"> Reject رفض</a></td>
+        <td style="text-align:center;">{{user.bio.nationality}} </td>
         <td style="text-align:center;">{{user.bio.title}} </td>
         <td style="text-align:center;">{{user.author_id}} </td>
         <td style="text-align:center;">{{user.Visa}}</td>
