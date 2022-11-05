@@ -49,7 +49,7 @@ db = SQLAlchemy(app)
 # CREATE USERS TABLE
 # PARENT
 class User(db.Model):
-    __tablename__ = "customers"
+    __tablename__ = "customers1"
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, nullable=False)
     Name = db.Column(db.String(250), nullable=False)
@@ -57,12 +57,12 @@ class User(db.Model):
     Nid = db.Column(db.BIGINT, nullable=False)
     Visa = db.Column(db.BIGINT, nullable=False)
     resume = db.relationship('BioData', backref='resumes')
-    resume_id = db.Column(db.Integer, db.ForeignKey('bio_data.id'))
+    resume_id = db.Column(db.Integer, db.ForeignKey('bio_data1.id'))
 
 
 # Child
 class BioData(db.Model):
-    __tablename__ = "bio_data"
+    __tablename__ = "bio_data1"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
@@ -78,7 +78,7 @@ class BioData(db.Model):
 # New Table :
 
 class Temp(db.Model):
-    __tablename__ = "temp"
+    __tablename__ = "temp1"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
