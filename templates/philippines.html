@@ -48,6 +48,7 @@
 
 
     {% for cv in cvs %}
+    {% if cv.nationality == "Philippines" %}
 
 
   <div class="card" >
@@ -76,7 +77,7 @@
       </div>
     </div>
   </div>
-
+    {% endif %}
     {% endfor %}
 </div>
 
