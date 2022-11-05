@@ -163,7 +163,6 @@ def philippines():
 
 @app.route("/kenya")
 def kenya():
-    all_cvs = Temp.query.all()
     return render_template("kenya.html", cvs=all_cvs, temps=all_temps)
 
 

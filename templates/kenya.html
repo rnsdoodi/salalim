@@ -36,56 +36,6 @@
         {% endif %}
         </div>
 
-
-
-
-
-        {% for cv in cvs %}
-    {% if cv.nationality == "Kenya" %}
-
-
-  <div class="card" >
-      <div class="front" style="background-image: url('{{cv.img_url}}');">
-
-
-        <p class="large"></p>
-    </div>
-    <div class="back">
-      <div>
-    <div class="title">{{cv.title}}</div>
-
-        <div class="rating" style="color:black;">
-            <label> {{cv.rating}} : العمر</label>
-        </div>
-             <p class="review"> {{cv.nationality}} / كينيا </p>
-          <p class="review"> {{cv.review}}</p>
-          <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>
-
-        <a href="{{url_for('choice',cvs_id=cv.id)}}" class="btn btn-success">اختيار</a>
-           <br><br>
-          <a href="{{cv.resume}}" class="btn btn-info" target="_blank">عرض السيرة الذاتية</a>
-<br><br>
-          <a href="{{cv.video}}" class="btn btn-warning" target="_blank">فيديو المقابلة الشخصية</a>
-
-      </div>
-    </div>
-  </div>
-    {% endif %}
-    {% endfor %}
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container text-center add">
 <a href="{{url_for('home')}}" class="btn btn-dark">الصفحة الرئيسية</a>
 
