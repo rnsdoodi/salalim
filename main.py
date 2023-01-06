@@ -57,7 +57,7 @@ class User(db.Model):
     Nid = db.Column(db.BIGINT, nullable=False)
     Visa = db.Column(db.BIGINT, nullable=False)
     resume = db.relationship('BioData', backref='resumes')
-    resume_id = db.Column(db.Integer, db.ForeignKey('bio_data1.id'))
+    resume_id = db.Column(db.Integer, db.ForeignKey('bio_data.id'))
 
 
 # Child
