@@ -70,7 +70,7 @@ class BioData(db.Model):
     nationality = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(1000), nullable=False)
     resume = db.Column(db.String(1000), nullable=False)
-    video = db.Column(db.String(1000), nullable=False)
+    # video = db.Column(db.String(1000), nullable=False)
     selector = relationship('User', backref='bio')
 
 
@@ -86,7 +86,7 @@ class Temp(db.Model):
     nationality = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(1000), nullable=False)
     resume = db.Column(db.String(1000), nullable=False)
-    video = db.Column(db.String(1000), nullable=False)
+    # video = db.Column(db.String(1000), nullable=False)
 
 
 #######################################################################
@@ -112,7 +112,7 @@ class AddCv(FlaskForm):
     nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Kenya "])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
-    video = StringField('Video الفيديو ', validators=[DataRequired()])
+    # video = StringField('Video الفيديو ', validators=[DataRequired()])
     submit = SubmitField('Submit / إضافة')
 
 
@@ -200,7 +200,7 @@ def add():
             nationality=form.nationality.data,
             img_url=form.img_url.data,
             resume=form.resume.data,
-            video=form.video.data
+            # video=form.video.data
         )
 
         new_cv = BioData(
@@ -210,7 +210,7 @@ def add():
             nationality=form.nationality.data,
             img_url=form.img_url.data,
             resume=form.resume.data,
-            video=form.video.data
+            # video=form.video.data
         )
 
         with open("cvs-data.csv", mode="a", encoding="utf8") as csv_file:
@@ -220,7 +220,7 @@ def add():
                             f"{form.nationality.data},"
                            f"{form.img_url.data},"
                            f"{form.resume.data},"
-                           f"{form.video.data}"
+                           # f"{form.video.data}"
                            )
 
         # file = form.img_url.data
