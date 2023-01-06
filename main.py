@@ -62,7 +62,7 @@ class User(db.Model):
 
 # Child
 class BioData(db.Model):
-    __tablename__ = "bio_data1"
+    __tablename__ = "bio_data"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
@@ -78,7 +78,7 @@ class BioData(db.Model):
 # New Table :
 
 class Temp(db.Model):
-    __tablename__ = "temp1"
+    __tablename__ = "temp"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)  # name
     rating = db.Column(db.Integer, nullable=False)  # Age
