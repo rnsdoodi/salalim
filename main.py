@@ -109,7 +109,7 @@ class AddCv(FlaskForm):
     rating = IntegerField('worker age العمر', validators=[DataRequired()])
     review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة"
         , "سائق خاص", "عامل منزلي"])
-    nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Kenya "])
+    nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Ethiopia"])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
     # video = StringField('Video الفيديو ', validators=[DataRequired()])
