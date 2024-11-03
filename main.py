@@ -109,7 +109,7 @@ class AddCv(FlaskForm):
     rating = IntegerField('worker age العمر', validators=[DataRequired()])
     review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة"
         , "سائق خاص", "عامل منزلي"])
-    nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Ethiopia"])
+    nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Bangladesh"])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
     # video = StringField('Video الفيديو ', validators=[DataRequired()])
@@ -163,6 +163,7 @@ def philippines():
 
 @app.route("/kenya")
 def kenya():
+    all_cvs = Temp.query.all()
     return render_template("kenya.html", cvs=all_cvs, temps=all_temps)
 
 

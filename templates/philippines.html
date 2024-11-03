@@ -36,7 +36,7 @@
 
 
 
-     {% if cvs == []: %}
+    {% if cvs == []: %}
     <div class="content">
         <h3>...لاتوجد سير ذاتية متاحة الآن</h3>
         <br><br><br><br>
@@ -48,7 +48,7 @@
 
 
     {% for cv in cvs %}
-
+{% if cv.nationality == "Philippines" %}
   <div class="card" >
       <div class="front" style="background-image: url('{{cv.img_url}}');">
 
@@ -75,8 +75,9 @@
       </div>
     </div>
   </div>
-
+    {% endif %}
     {% endfor %}
+
 </div>
 
 <div class="container text-center add">
