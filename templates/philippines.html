@@ -15,76 +15,135 @@
 {% block content %}
 <br>
 
+
+
+
+<!--<div class="container" style="text-align:right">-->
+<!--  <h1 class="container" ><u>العمالة الفلبينية</u></h1>-->
+<!--  <p class="container" >يمكنكم الاختيار بضغطة زر من العمالة أدناه</p>-->
+
+
+<!--    {% with messages = get_flashed_messages() %}-->
+<!--      {% if messages %}-->
+<!--        {% for message in messages %}-->
+<!--&lt;!&ndash;         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>&ndash;&gt;-->
+<!--            <div class="alert alert-success" style="text-align:center;" role="alert">{{ message }}</div>-->
+
+
+<!--        {% endfor %}-->
+<!--      {% endif %}-->
+<!--    {% endwith %}-->
+
+
+<!--<br><br><br>-->
+
+
+
+<!--    {% if cvs == []: %}-->
+<!--    <div class="content">-->
+<!--        <h3>...لاتوجد سير ذاتية متاحة الآن</h3>-->
+<!--        <br><br><br><br>-->
+<!--&lt;!&ndash;         <img src="https://media.giphy.com/media/26hkhPJ5hmdD87HYA/giphy.gif"/>&ndash;&gt;-->
+
+<!--        {% endif %}-->
+<!--        </div>-->
+
+
+
+<!--    {% for cv in cvs %}-->
+<!--{% if cv.nationality == "Philippines" %}-->
+
+<!--  <div class="card" >-->
+<!--      <div class="front" style="background-image: url('{{cv.img_url}}');">-->
+
+
+<!--        <p class="large"></p>-->
+<!--    </div>-->
+<!--    <div class="back">-->
+<!--      <div>-->
+<!--    <div class="title">{{cv.title}}</div>-->
+
+<!--        <div class="rating" style="color:black;">-->
+<!--            <label> {{cv.rating}} : العمر</label>-->
+<!--        </div>-->
+<!--             <p class="review"> {{cv.nationality}}</p>-->
+<!--          <p class="review"> {{cv.review}}</p>-->
+<!--          <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>-->
+
+<!--        <a href="{{url_for('choice',cvs_id=cv.id)}}" class="btn btn-success">اختيار</a>-->
+<!--           <br><br>-->
+<!--          <a href="{{cv.resume}}" class="btn btn-info" target="_blank">عرض السيرة الذاتية</a>-->
+<!--<br><br>-->
+<!--&lt;!&ndash;          <a href="{{cv.video}}" class="btn btn-warning" target="_blank">فيديو المقابلة الشخصية</a>&ndash;&gt;-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--    {% endif %}-->
+<!--    {% endfor %}-->
+
+<!--</div>-->
+
 <div class="container" style="text-align:right">
-  <h1 class="container" ><u>العمالة الفلبينية</u></h1>
-  <p class="container" >يمكنكم الاختيار بضغطة زر من العمالة أدناه</p>
+  <h1 class="text-center"><u>العمالة الفلبينية</u></h1>
+  <p class="text-center">يمكنكم الاختيار بضغطة زر من العمالة أدناه</p>
 
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-<!--         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>-->
-            <div class="alert alert-success" style="text-align:center;" role="alert">{{ message }}</div>
+  <br><br>
 
+  <div class="row">
 
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-
-<br><br><br>
-
-
-
-    {% if cvs == []: %}
-    <div class="content">
-        <h3>...لاتوجد سير ذاتية متاحة الآن</h3>
-        <br><br><br><br>
-<!--         <img src="https://media.giphy.com/media/26hkhPJ5hmdD87HYA/giphy.gif"/>-->
-
-        {% endif %}
+    {% if cvs == [] %}
+        <div class="col-12 text-center">
+            <h3>...لاتوجد سير ذاتية متاحة الآن</h3>
         </div>
-
-
+    {% endif %}
 
     {% for cv in cvs %}
-{% if cv.nationality == "Philippines" %}
-  <div class="card" >
-      <div class="front" style="background-image: url('{{cv.img_url}}');">
-
-
-        <p class="large"></p>
-    </div>
-    <div class="back">
-      <div>
-    <div class="title">{{cv.title}}</div>
-
-        <div class="rating" style="color:black;">
-            <label> {{cv.rating}} : العمر</label>
+      {% if cv.nationality == "Philippines" %}
+        <div class="col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+            <div class="card" style="width: 100%; margin: 10px;">
+                <div class="front" style="background-image: url('{{cv.img_url}}');">
+                    <p class="large"></p>
+                </div>
+                <div class="back">
+                  <div>
+                    <div class="title">{{cv.title}}</div>
+                    <div class="rating" style="color:black;">
+                        <label> {{cv.rating}} : العمر</label>
+                    </div>
+                    <p class="review"> {{cv.nationality}}</p>
+                    <p class="review"> {{cv.review}}</p>
+                    <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>
+                    <a href="{{url_for('choice',cvs_id=cv.id)}}" class="btn btn-success">اختيار</a>
+                    <br><br>
+                    <a href="{{cv.resume}}" class="btn btn-info" target="_blank">عرض السيرة الذاتية</a>
+                  </div>
+                </div>
+            </div>
         </div>
-             <p class="review"> {{cv.nationality}}</p>
-          <p class="review"> {{cv.review}}</p>
-          <div class="worker_id">worker-id : {{cv.id}}: رقم التعريف  </div><br>
-
-        <a href="{{url_for('choice',cvs_id=cv.id)}}" class="btn btn-success">اختيار</a>
-           <br><br>
-          <a href="{{cv.resume}}" class="btn btn-info" target="_blank">عرض السيرة الذاتية</a>
-<br><br>
-<!--          <a href="{{cv.video}}" class="btn btn-warning" target="_blank">فيديو المقابلة الشخصية</a>-->
-
-      </div>
-    </div>
-  </div>
-    {% endif %}
+      {% endif %}
     {% endfor %}
 
-</div>
+  </div> </div>
+
+
+
 
 <div class="container text-center add">
 <a href="{{url_for('home')}}" class="btn btn-dark">الصفحة الرئيسية</a>
 </div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 {%include "footer.html"%}
 
 {% endblock %}
+
