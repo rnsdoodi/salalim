@@ -105,10 +105,9 @@ db.create_all()
 
 # Add Cv Flask Form
 class AddCv(FlaskForm):
-    title = StringField('worker name اسم العاملة', validators=[DataRequired()])
+    title = StringField('worker name اسم العاملة', validators=[DataRequired()],render_kw={"placeholder": "الاسم الثلاثي"})
     rating = IntegerField('worker age العمر', validators=[DataRequired()])
-    review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة"
-        , "سائق خاص", "عامل منزلي"])
+    review = SelectField('worker position المهنة', choices=["عاملة منزلية", "ممرضة منزلية", "مربية/جليسة أطفال", "طباخة", "سائق خاص", "عامل منزلي"])
     nationality = SelectField('Nationality الجنسية', choices=["Philippines", "Ethiopia"])
     img_url = StringField('worker image الصورة', validators=[DataRequired()])
     resume = StringField('CV السيرة الذاتية', validators=[DataRequired()])
