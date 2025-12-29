@@ -5,18 +5,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
  <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
 {% endblock %}
 
-{% block title %}العـمالة البنجالية {% endblock %}
+{% block title %}العـمالة الإثيوبية {% endblock %}
 
 {% block content %}
 <br>
 
 <div class="container" style="text-align:right">
-  <h1 class="container" ><u>العمالة البنجالية </u></h1>
+  <h1 class="container" ><u>العمالة الإثيوبية </u></h1>
   <p class="container" >يمكنكم الاختيار بضغطة زر من العمالة أدناه</p>
 
 
@@ -48,7 +48,7 @@
 
 
     {% for cv in cvs %}
-{% if cv.nationality == "Bangladesh" %}
+{% if cv.nationality == "Ethiopia" %}
   <div class="card" >
       <div class="front" style="background-image: url('{{cv.img_url}}');">
 
