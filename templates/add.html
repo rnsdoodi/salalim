@@ -117,6 +117,10 @@ body{
 .alert{
     border-radius:10px;
 }
+.small-form{
+max-width:450px;   /* صغر أو كبر الرقم حسب ما تحب */
+margin:0 auto;     /* يخليه في المنتصف */
+}
 </style>
 {% endblock %}
 
@@ -169,18 +173,20 @@ body{
         </div>
 
         <!-- Add Worker Form -->
-        <div class="card-dark">
-            <h3>إضافة عاملة جديدة</h3>
+      <div class="card-dark">
+    <h3 class="text-center">إضافة عاملة جديدة</h3>
 
-            {{ wtf.quick_form(
-                form,
-                novalidate=True,
-                action=action,
-                button_map={'submit':'primary'},
-                enctype="multipart/form-data"
-            ) }}
+    <div class="small-form">
+        {{ wtf.quick_form(
+            form,
+            novalidate=True,
+            action=action,
+            button_map={'submit':'primary'},
+            enctype="multipart/form-data"
+        ) }}
+    </div>
 
-        </div>
+</div>
 
     </div>
 
