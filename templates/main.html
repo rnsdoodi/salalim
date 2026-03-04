@@ -1,13 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
-<link rel="icon" type="image/x-icon" href="/static/assets/favicon2.ico" />
-<div class="box">
-	<h1>لـوحـة التحــكـم </h1>
-<br><br>
-  <a href="{{ url_for('login') }}" class="btn btn-primary btn-block btn-large">تسجيل الدخول</a>
-<!--  <a href="{{ url_for('register') }}" class="btn btn-secondary btn-block btn-large">تسجيل حساب جديد</a>-->
 
+<link rel="icon" type="image/x-icon" href="/static/assets/favicon2.ico" />
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        font-family: 'Cairo', sans-serif;
+    }
+
+    .dashboard-container {
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dashboard-card {
+        background: #ffffff;
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .dashboard-card h1 {
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #2a5298;
+    }
+
+    .btn-custom {
+        padding: 12px;
+        font-size: 18px;
+        border-radius: 10px;
+        transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-card">
+        <h1>لوحة التحكم</h1>
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-custom w-100">
+            تسجيل الدخول
+        </a>
+    </div>
 </div>
 
 {% endblock %}
+
 

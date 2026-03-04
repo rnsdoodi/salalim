@@ -1,86 +1,189 @@
 {% extends 'bootstrap/base.html' %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-
 {% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
- <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
-{% endblock %}
+{{ super() }}
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
-{% block title %}لوحة التحكم الرئيسية{% endblock %}
+<style>
+body{
+    font-family:'Cairo', sans-serif;
+    background:#0f172a;
+    color:#f1f5f9;
+}
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:25px;
+    position:fixed;
+    height:100%;
+    box-shadow:5px 0 25px rgba(0,0,0,0.4);
+}
+
+.sidebar h3{
+    color:#38bdf8;
+    margin-bottom:40px;
+    font-weight:700;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px 15px;
+    margin-bottom:10px;
+    border-radius:10px;
+    color:#cbd5e1;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:#1f2937;
+    color:#fff;
+    transform:translateX(-5px);
+}
+
+/* Content */
+.main{
+    margin-left:260px;
+    width:100%;
+    padding:40px;
+}
+
+/* Top Bar */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.topbar h4{
+    margin:0;
+}
+
+.logout-btn{
+    border-radius:8px;
+}
+
+/* Stats Cards */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:40px;
+}
+
+.stat-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.stat-card h2{
+    font-size:35px;
+    margin-bottom:10px;
+    color:#38bdf8;
+}
+
+/* Form Card */
+.card-dark{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    margin-bottom:30px;
+}
+
+.card-dark h3{
+    margin-bottom:20px;
+    font-weight:700;
+    color:#38bdf8;
+}
+
+.alert{
+    border-radius:10px;
+}
+</style>
+{% endblock %}
 
 {% block content %}
 
-<div class="content">
+<div class="wrapper">
 
-<br><br>
-    <div style="color:black;margin-left:90%;"><b>{{current_user.name}}</b> ,  ✌️مرحباً </div>
-    <br><br><br><br><br>
-<a href="{{url_for('logout')}}" class="btn btn-primary" style="margin-left:90%;">تسجيل الخروج</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>لوحة التحكم</h3>
 
+        <a href="{{url_for('selections')}}">📋 طلبات الاختيار</a>
+        <a href="{{url_for('Dh_list')}}">👩‍💼 قاعدة البيانات</a>
+        <a href="{{url_for('temp_list')}}">🌐 الصفحة الرئيسية</a>
+        <a href="{{url_for('logout')}}" style="background:#7f1d1d;color:#fff;">🚪 تسجيل الخروج</a>
+    </div>
 
-    <h1 class="heading">لوحة التحكم</h1>
+    <!-- Main Content -->
+    <div class="main">
 
+        <div class="topbar">
+            <h4>👋 مرحباً {{current_user.name}}</h4>
+        </div>
 
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success text-center">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-card">
+                <h2>{{ total_workers }}</h2>
+                <p>إجمالي العمالة</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>{{ total_temp }}</h2>
+                <p>المعروض في الموقع</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>{{ total_requests }}</h2>
+                <p>طلبات الاختيار</p>
+            </div>
+        </div>
+
+        <!-- Add Worker Form -->
+        <div class="card-dark">
+            <h3>إضافة عاملة جديدة</h3>
+
+            {{ wtf.quick_form(
+                form,
+                novalidate=True,
+                action=action,
+                button_map={'submit':'primary'},
+                enctype="multipart/form-data"
+            ) }}
+
+        </div>
+
+    </div>
 
 </div>
-<div class="content">
- {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-         <div class="alert alert-success" role="alert">{{ message }}</div>
-<!--         <p style="color:white;text-align:center; background-color:green; ">{{ message }}</p>-->
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-
-    <h1 class="heading">إضافة عاملة جديدة</h1>
-
-
-      {{ wtf.quick_form(form,novalidate=True, action=action, extra_classes="size-options",
-       button_map={'submit':'dark'},enctype="multipart/form-data")}}
-
-<!--    <form method="post" enctype="multipart/form-data">إضافة عاملة جديدة</form>-->
-<!--    <form method="post"  enctype="multipart/form-data">-->
-<!--        <input name="title"/>-->
-<!--        <input name="rating"/>-->
-<!--        <input name="review"/>-->
-<!--        <input name="profilePic" type="file" accept="image/*" capture="user"/>-->
-<!--        <button type="submit">upload</button>-->
-<!--    </form>-->
-</div>
-
-<br><br>
-
-
-
-<div class="content">
-<p class="heading"><a href="{{url_for('selections')}}" class="btn btn-info"><b>Check All Selections طلبات الاختيار</b></a></p>
-</div>
-
-<div class="content">
-<p class="heading" ><a href="{{url_for('Dh_list')}}" class="btn btn-danger"><b>Bio Data العمالة المضافة لقاعدة البيانات</b></a></p>
-</div>
-
-
-<div class="content">
-<p class="heading"><a href="{{url_for('temp_list')}}" class="btn btn-info"><b>Temporary العمالة المضافة للصفحة الرئيسية (الموقع)</b></a></p>
-</div>
-
-<!--<div class="content">-->
-<!--<p class="heading"><a href="{{url_for('cvs')}}" class="btn btn-info"><b>Check The List of the Cv's with Images قائمة السير الذاتية مع الصور</b></a></p>-->
-<!--</div>-->
-
-
-{%include "footer.html"%}
 
 {% endblock %}
-
-
-
-

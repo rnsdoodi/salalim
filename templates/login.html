@@ -1,21 +1,98 @@
 {% extends "base.html" %}
 {% block content %}
+
 <link rel="icon" type="image/x-icon" href="/static/assets/favicon2.ico" />
-<div class="box">
-    <h1>تسجيل الدخول</h1>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-         <p>{{ message }}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    <form method="post">
-        <input type="text" name="email" placeholder="Email" required="required"/>
-        <input type="password" name="password" placeholder="Password" required="required"/>
-        <button type="submit" class="btn btn-primary btn-block btn-large">الدخول</button>
-<!--        <a href="#" style="color:white;">نسيت كلمة المرور ؟</a>-->
-    </form>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        font-family: 'Cairo', sans-serif;
+    }
+
+    .login-container {
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card {
+        background: #ffffff;
+        padding: 45px 35px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .login-card h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 700;
+        color: #2a5298;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        transition: 0.3s;
+    }
+
+    .form-control:focus {
+        border-color: #2a5298;
+        box-shadow: 0 0 8px rgba(42, 82, 152, 0.3);
+    }
+
+    .btn-custom {
+        width: 100%;
+        padding: 12px;
+        font-size: 17px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+
+    .alert-custom {
+        background-color: #ffe5e5;
+        color: #b30000;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        text-align: center;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <h1>تسجيل الدخول</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert-custom">
+                  {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="post">
+            <input type="text" name="email" class="form-control" placeholder="البريد الإلكتروني" required />
+            <input type="password" name="password" class="form-control" placeholder="كلمة المرور" required />
+            <button type="submit" class="btn btn-primary btn-custom">
+                الدخول
+            </button>
+        </form>
+
+    </div>
 </div>
 
 {% endblock %}
