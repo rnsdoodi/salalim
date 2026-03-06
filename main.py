@@ -192,6 +192,10 @@ def send_email(name, email, phone, message):
 def add():
     form = AddCv()
 
+    total_workers = User.query.count()
+    total_temp = Temp.query.count()
+    total_requests = BioData.query.count()
+
     if form.validate_on_submit():
         new_resume = Temp(
             title=form.title.data,
@@ -235,7 +239,13 @@ def add():
         flash("✔!! تم إضافة العاملة بنجاح ")
         return redirect(url_for('add'))
 
-    return render_template("add.html", form=form, cv=cvs)
+    return render_template(
+        "add.html",
+        form=form,
+        total_workers=total_workers,
+        total_temp=total_temp,
+        total_requests=total_requests
+    )
 
 
 #######################################################################################################################
