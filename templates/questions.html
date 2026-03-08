@@ -1,54 +1,110 @@
 {% extends 'bootstrap/base.html'%}
+
 {% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
- <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+{{ super() }}
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+
+<style>
+
+/* Footer ثابت */
+html, body{
+height:100%;
+margin:0;
+}
+
+body{
+font-family:'Cairo',sans-serif;
+background:#f5f6fa;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+main{
+flex:1;
+}
+
+.page-title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.faq-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+margin-bottom:40px;
+}
+
+.faq-btn{
+width:100%;
+max-width:600px;
+text-align:right;
+padding:12px 20px;
+font-size:16px;
+font-weight:600;
+text-decoration:none;
+transition:0.3s;
+}
+
+.faq-btn:hover{
+background-color:#0056b3;
+color:white;
+}
+
+</style>
+
 {% endblock %}
 
-{% block title %}الأسئلة الشائعة  {% endblock %}
+{% block title %}الأسئلة الشائعة{% endblock %}
 
 {% block content %}
 
-<div class="container text-right add" >
-  <h3><b>الأسئلة الشائعة</b></h3>
+<main>
+
+<div class="container page-title">
+<h2><b>الأسئلة الشائعة</b></h2>
+<p>يمكنكم الضغط على أي سؤال لعرض التفاصيل</p>
 </div>
 
-<div class="policy">
-  <ul class="container text-right add">
-      <a href="{{url_for('insurance')}}" class="btn btn-secondary"> ما المقصود بتأمين العمالة المنزلية ؟ </a>
-      <br><br>
-      <a href="{{url_for('visa')}}" class="btn btn-secondary"> كيف يتم إصدار تأشيرة العمالة المنزلية ؟ </a>
-      <br><br>
-       <a href="https://www.youtube.com/watch?v=Ng2spSYzolA " class="btn btn-secondary"> كيف يتم إصدار تأشيرة العمالة المنزلية ؟ (فيديو توضيحي )</a>
-      <br><br>
-       <a href="{{url_for('evisa')}}" class="btn btn-secondary">كيف يكون شكل التأشيرة بعد الإصدار  ؟ </a>
-      <br><br>
-      <a href="{{url_for('cancel')}}" class="btn btn-secondary">كيف يتم إلغاء التأشيرة  ؟ </a>
-      <br><br>
-       <a href="{{url_for('salary')}}" class="btn btn-secondary"> كيف يتم تحويل راتب العاملة المنزلية عن طريق القنوات الرسمية ؟ </a>
-      <br><br>
-       <a href="{{url_for('electronic')}}" class="btn btn-secondary">كيف يتم التعاقد الإلكتروني بين العميل ومكتب الإستقدام ؟ </a>
-       <br><br>
-      <a href="https://www.youtube.com/watch?v=f8qhExWlIos" class="btn btn-secondary">كيف يتم التعاقد الإلكتروني بين العميل ومكتب الاستقدام ؟ (فيديو توضيحي ) </a>
-      <br><br>
-         <a href="{{url_for('replace')}}" class="btn btn-secondary">ماهي التأشيرة البديلة (التعويضية) ؟ </a>
-      <br><br>
-          <a href="{{url_for('musaned')}}" class="btn btn-secondary">كيف يمكن التسجيل في نظام مساند والدخول للنظام ؟ </a>
-  </ul>
+<div class="container faq-container">
+
+<a href="{{url_for('insurance')}}" class="btn btn-secondary faq-btn">ما المقصود بتأمين العمالة المنزلية؟</a>
+
+<a href="{{url_for('visa')}}" class="btn btn-secondary faq-btn">كيف يتم إصدار تأشيرة العمالة المنزلية؟</a>
+
+<a href="https://www.youtube.com/watch?v=Ng2spSYzolA" target="_blank" class="btn btn-secondary faq-btn">كيف يتم إصدار تأشيرة العمالة المنزلية؟ (فيديو توضيحي)</a>
+
+<a href="{{url_for('evisa')}}" class="btn btn-secondary faq-btn">كيف يكون شكل التأشيرة بعد الإصدار؟</a>
+
+<a href="{{url_for('cancel')}}" class="btn btn-secondary faq-btn">كيف يتم إلغاء التأشيرة؟</a>
+
+<a href="{{url_for('salary')}}" class="btn btn-secondary faq-btn">كيف يتم تحويل راتب العاملة المنزلية عن طريق القنوات الرسمية؟</a>
+
+<a href="{{url_for('electronic')}}" class="btn btn-secondary faq-btn">كيف يتم التعاقد الإلكتروني بين العميل ومكتب الإستقدام؟</a>
+
+<a href="https://www.youtube.com/watch?v=f8qhExWlIos" target="_blank" class="btn btn-secondary faq-btn">كيف يتم التعاقد الإلكتروني بين العميل ومكتب الاستقدام؟ (فيديو توضيحي)</a>
+
+<a href="{{url_for('replace')}}" class="btn btn-secondary faq-btn">ماهي التأشيرة البديلة (التعويضية)؟</a>
+
+<a href="{{url_for('musaned')}}" class="btn btn-secondary faq-btn">كيف يمكن التسجيل في نظام مساند والدخول للنظام؟</a>
+
 </div>
 
-<div class="container text-center add">
-<!--<a href="{{url_for('select')}}" class="btn btn-dark">أوافق على الشروط والأحكام وارغب بالاستمرار </a>-->
-  <a href="{{url_for('home')}}" class="btn btn-dark">العودة للصفحة الرئيسية</a>
+<div class="container text-center mb-5">
+<a href="{{url_for('home')}}" class="btn btn-dark">العودة للصفحة الرئيسية</a>
 </div>
-<br><br><br><br><br><br><br><br><br><br>
 
+</main>
 
-{%include "footer.html"%}
+<!-- Footer -->
+<div style="margin-top:auto;">
+{% include "footer.html" %}
+</div>
 
 {% endblock %}
