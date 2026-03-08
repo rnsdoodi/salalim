@@ -1,41 +1,114 @@
 {% extends 'bootstrap/base.html' %}
 {% import "bootstrap/wtf.html" as wtf %}
+
 {% block styles %}
-  {{ super() }}
- <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{{ super() }}
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+
+<style>
+
+html, body{
+height:100%;
+margin:0;
+}
+
+body{
+font-family:'Cairo',sans-serif;
+background:#f5f6fa;
+direction:rtl;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+/* يجعل المحتوى يتمدد */
+.main-content{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 15px;
+}
+
+/* بطاقة النموذج */
+
+.form-card{
+
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+width:100%;
+max-width:600px;
+text-align:center;
+
+}
+
+.heading{
+font-weight:700;
+margin-bottom:10px;
+}
+
+.worker-id{
+color:#666;
+margin-bottom:25px;
+font-size:18px;
+}
+
+.alert{
+margin-bottom:20px;
+}
+
+</style>
+
 {% endblock %}
-{% block title %}Select The Worker{% endblock %}
+
+
+
+{% block title %}اختيار العاملة{% endblock %}
+
+
+
 {% block content %}
-<div class="content">
 
-     {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
+<div class="main-content">
 
- <div class="alert alert-success" style="text-align:center;" role="alert">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+<div class="form-card">
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success text-center">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<h2 class="heading">اختيار العاملة</h2>
+
+<div class="worker-id">
+رقم تعريف العاملة : {{cv}}
+</div>
 
 <br>
 
-    <h1 class="heading">اختيار العاملة</h1>
-
-    <h1 class="heading">{{cv}} :رقم تعريف العاملة </h1>
-
-
-<br><br><br><br>
-      {{ wtf.quick_form(form,novalidate=True)}}
+{{ wtf.quick_form(form, novalidate=True, button_map={"submit":"success"}) }}
 
 </div>
 
-<br><br><br><br><br><br><br><br>
+</div>
 
 
-{%include "footer.html"%}
+<!-- Footer -->
+
+<div style="margin-top:auto;">
+{% include "footer.html" %}
+</div>
 
 {% endblock %}

@@ -1,108 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 
 <head>
-     <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
 
-  <title>اختيار العمالة</title>
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+<title>اختيار العمالة</title>
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="/static/css/styles3.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Cairo',sans-serif;
+background:#f5f6fa;
+}
+
+.title-section{
+text-align:center;
+margin-bottom:40px;
+}
+
+.title-section h2{
+font-weight:700;
+}
+
+.cards-container{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.worker-card{
+
+background:white;
+border-radius:12px;
+width:280px;
+text-align:center;
+padding:25px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.worker-card:hover{
+transform:translateY(-8px);
+box-shadow:0 12px 30px rgba(0,0,0,0.15);
+}
+
+.worker-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.worker-card h3{
+font-weight:700;
+margin-bottom:15px;
+}
+
+.enter-btn{
+
+display:inline-block;
+background:#007bff;
+color:white;
+padding:10px 25px;
+border-radius:6px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.enter-btn:hover{
+
+background:#0056b3;
+color:white;
+}
+
+.back-btn{
+
+margin-top:40px;
+padding:10px 35px;
+border-radius:6px;
+}
+
+    html, body{
+height:100%;
+margin:0;
+}
+
+body{
+font-family:'Cairo',sans-serif;
+background:#f5f6fa;
+direction:rtl;
+
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+.container{
+flex:1;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <div class="hero_area">
+<section class="container py-5">
 
-  <!-- price section -->
-  <section class="price_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2 style="text-align:center;">
-          مـرحباً بكم
-        </h2>
-      </div>
+<div class="title-section">
+<h2>مرحباً بكم</h2>
+<p>يرجى اختيار الدولة لعرض العمالة المتاحة</p>
+</div>
 
 
+<div class="cards-container">
 
-      <div class="price_container">
-        <div class="box">
-          <div class="name">
-            <h2>
-              الفلبــيــن
-            </h2>
-          </div>
-          <div class="img-box">
-            <img src="static/assets/img/F2.jpg" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-<!--              <span>1000.00</span>-->
-            </h5>
-            <a href="{{url_for('philippines')}}" style="border-radius:5%;">
-              الـدخـول
-            </a>
-          </div>
-        </div>
+<!-- الفلبين -->
+
+<div class="worker-card">
+
+<h3>الفلبين</h3>
+
+<img src="/static/assets/img/F2.jpg">
+
+<a href="{{url_for('philippines')}}" class="enter-btn">
+الدخول
+</a>
+
+</div>
 
 
+<!-- اثيوبيا -->
 
-        <div class="box">
-          <div class="name">
-            <h2>
-              اثيوبيا
-            </h2>
-          </div>
-          <div class="img-box">
-            <img src="static/assets/img/E1.png" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-<!--              <span>1000.00</span>-->
-            </h5>
-            <a href="{{url_for('kenya')}}" style="border-radius:5%;">
-              الـدخـول
-            </a>
-          </div>
-        </div>
-      </div>
+<div class="worker-card">
 
-      <div class="d-flex justify-content-center">
-        <a href="{{url_for('home')}}" class="price_btn" style="border-radius:5%;">
-          العودة للصفحة الرئيسية
-        </a>
-      </div>
-    </div>
+<h3>إثيوبيا</h3>
 
-  </section>
+<img src="/static/assets/img/E1.png">
+
+<a href="{{url_for('kenya')}}" class="enter-btn">
+الدخول
+</a>
+
+</div>
+
+</div>
 
 
-  <!-- end price section -->
+<div class="text-center">
 
-<!--  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>-->
-<!--  <script type="text/javascript" src="/static/js/bootstrap.js"></script>-->
-<!--  <script type="text/javascript" src="js/custom.js"></script>-->
+<a href="{{url_for('home')}}" class="btn btn-dark back-btn">
+العودة للصفحة الرئيسية
+</a>
+
+</div>
+
+</section>
+<br>
+<br>
+
+{%include "footer.html"%}
+
 </body>
- {%include "footer.html"%}
-
 </html>

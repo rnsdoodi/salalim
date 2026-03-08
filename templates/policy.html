@@ -1,71 +1,188 @@
 {% extends 'bootstrap/base.html'%}
+
 {% block styles %}
-  {{ super() }}
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
- <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+{{ super() }}
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+<style>
+
+body{
+font-family: 'Cairo', sans-serif;
+background:#f7f7f7;
+direction: rtl;
+}
+
+.page-title{
+text-align:center;
+margin:40px 0;
+}
+
+.card-policy{
+background:white;
+border-radius:10px;
+padding:25px;
+margin-bottom:30px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card-policy h3{
+font-weight:700;
+margin-bottom:20px;
+color:#333;
+}
+
+.policy-item{
+margin-bottom:15px;
+font-size:17px;
+color:#444;
+}
+
+.policy-item i{
+color:#28a745;
+margin-left:8px;
+}
+
+.highlight{
+color:red;
+font-weight:bold;
+}
+
+.actions{
+text-align:center;
+margin-top:30px;
+}
+
+.btn-custom{
+padding:10px 30px;
+font-size:18px;
+border-radius:6px;
+margin:10px;
+}
+
+</style>
+
 {% endblock %}
 
-{% block title %}الشروط والأحكام {% endblock %}
+
+{% block title %}الشروط والأحكام{% endblock %}
 
 {% block content %}
 
-<div class="container text-right add" >
-  <h3><b>الشروط والأحكام الخاصة بعملية اختيار العمالة المنزلية</b></h3>
-</div>
+<div class="container">
 
-<div class="policy">
-  <ul class="container text-right add">
-      <p>  تخضع عملية الاختيار لرقابة المكتب لذا لابد من التأكد من توفر المتطلبات التالي ذكرها </p>
-
-      <p> التأكد من ان جميع المعلومات المدخلة صحيحة وإلا سيؤدي إلى إلغاء الطلب بعد المراجعة  </p>
-
-      <p> التأكد من ان رقم التواصل صحيحا لكي نتمكن من التواصل معكم لإكمال الإجراءات وإلا سيؤدي إلى إلغاء الطلب بعد المراجعة  </p>
-
-      <p> التأكد من صَلاحِيَة التأشيرة و أن بيانات التأشيرة (رَقَم الصادر) صحيحة  </p>
-
-      <p> التأكد من صحة رَقَم الهُوِيَّة الوطنية أو الإقامة  </p>
-
-      <p>  لأغراض التأمين والتحقق و عند الاختيار يجب التأكد من وضع <strong><u><b style="color:red;">رقم التعريف</b></u></strong> الصحيح لكل عاملة يتم اختيارها وإلا سوف يقوم النظام برفض عملية الاختيار تلقائياً  </p>
-  </ul>
-</div>
-
-<div class="container text-right add" >
-  <h3><b>الشروط والأحكام الخاصة باستقدام العمالة المنزلية</b></h3>
-</div>
-
-<div class="policy">
-  <ul class="container text-right add">
-      <p> تقع مسئولية العاملة المنزلية على عاتق مقدم الطلب أو صاحب العمل وعلى المكتب طوال مدّة عقد العاملة المنزلية (24 شهراً) لذا لابد من الالتزام بالشروط التالية  </p>
-
-      <p> توفير السكن الخاص (غرفة خاصة) للعاملة المنزلية   </p>
-
-      <p> توفير وسيلة اتصال للعاملة تمكنها من التواصل مع ذويها  </p>
-
-      <p> تسليم الرواتب بصورة شهرية ابتداء من اول يوم للوصول و حتى انتهاء مدة التعاقد عن طريق القنوات البنكية المعتمدة  </p>
-
-      <p> عدم تشغيل العاملة أو إجبارها على العمل مع صاحب عمل اخر غير الكفيل  </p>
-
-      <p> تمكين العاملة من العمل حسب تخصصها </p>
-
-      <p> عدم نقل كفالة العاملة المنزلية الا بعد موافقة العاملة والمكتب </p>
-
-      <p> عدم إصدار تأشيرة خروج نهائي الا بعد إخطار المكتب و عمل مخالصة نهائية وتصديقها من قنصلية بلادها  </p>
-  </ul>
+<div class="page-title">
+<h2><b>الشروط والأحكام</b></h2>
+<p>يرجى قراءة الشروط بعناية قبل متابعة عملية الاختيار</p>
 </div>
 
 
-<div class="container text-center add">
-<a href="{{url_for('select')}}" class="btn btn-dark">أوافق على الشروط والأحكام </a>
-  <a href="{{url_for('home')}}" class="btn btn-dark">لا أوافق</a>
+<!-- شروط اختيار العمالة -->
+
+<div class="card-policy">
+
+<h3><i class="fas fa-user-check"></i> الشروط الخاصة باختيار العمالة المنزلية</h3>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+تخضع عملية الاختيار لرقابة المكتب لذا لابد من التأكد من توفر المتطلبات التالية
 </div>
-<br><br><br><br><br><br><br><br><br><br>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+التأكد من أن جميع المعلومات المدخلة صحيحة وإلا سيتم إلغاء الطلب بعد المراجعة
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+التأكد من أن رقم التواصل صحيح لكي نتمكن من التواصل معكم
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+التأكد من صلاحية التأشيرة وأن بيانات التأشيرة (رقم الصادر) صحيحة
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+التأكد من صحة رقم الهوية الوطنية أو الإقامة
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+يجب إدخال <span class="highlight">رقم التعريف الصحيح</span> لكل عاملة وإلا سيرفض النظام الطلب
+</div>
+
+</div>
 
 
-{%include "footer.html"%}
+<!-- شروط الاستقدام -->
+
+<div class="card-policy">
+
+<h3><i class="fas fa-file-contract"></i> شروط استقدام العمالة المنزلية</h3>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+تقع مسؤولية العاملة المنزلية على مقدم الطلب طوال مدة العقد (24 شهراً)
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+توفير سكن خاص (غرفة خاصة) للعاملة المنزلية
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+توفير وسيلة اتصال للعاملة للتواصل مع ذويها
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+تسليم الرواتب شهرياً عبر القنوات البنكية المعتمدة
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+عدم تشغيل العاملة لدى صاحب عمل آخر
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+تمكين العاملة من العمل حسب تخصصها
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+عدم نقل الكفالة إلا بعد موافقة العاملة والمكتب
+</div>
+
+<div class="policy-item">
+<i class="fas fa-check-circle"></i>
+عدم إصدار خروج نهائي إلا بعد إخطار المكتب
+</div>
+
+</div>
+
+
+<!-- الأزرار -->
+
+<div class="actions">
+
+<a href="{{url_for('select')}}" class="btn btn-success btn-custom">
+<i class="fas fa-check"></i> أوافق على الشروط
+</a>
+
+<a href="{{url_for('home')}}" class="btn btn-danger btn-custom">
+<i class="fas fa-times"></i> لا أوافق
+</a>
+
+</div>
+
+</div>
+
+{% include "footer.html"%}
 
 {% endblock %}
